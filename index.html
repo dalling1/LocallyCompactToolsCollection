@@ -5,7 +5,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-<!--  <link rel="stylesheet" href="style.css">-->
   <style>
    html {
     padding: 0;
@@ -25,6 +24,14 @@
     color: #999;
    }
    .heading {
+   }
+   #controls {
+    background-color: #fdfdfd;
+    font-size: 16px;
+   }
+   #controls img {
+    vertical-align: bottom;
+    cursor: pointer;
    }
    .wrapper {
     display: flex;
@@ -81,21 +88,64 @@
    #details h2 {
     margin: 5px 0;
    }
-   .itemnumber {
+   #catalogue .itemnumber {
     padding: 0;
     margin: 0;
-    font-size: 12px;
+    font-size: 0.6em;
    }
-   .itemname {
+   #catalogue .itemname {
     padding: 0;
     margin: 0;
+    font-size: 1.0em;
+   }
+
+   /* add some size options: apply the 'small', 'medium', 'large' class to the catalogue DIV: */
+   .small#catalogue .item {
+    width: 70px;
+    height: 110px;
+    font-size: 10px;
+   }
+   .small#catalogue .item .iconholder img {
+    width: 12px;
+   }
+   .small#catalogue .iconholder {
+    bottom: 0;
+    right: 2px;
+   }
+
+   .medium#catalogue .item {
+    width: 130px;
+    height: 180px;
     font-size: 20px;
+   }
+   .medium#catalogue .item .iconholder img {
+    width: 16px;
+   }
+
+   .large#catalogue .item {
+    width: 180px;
+    height: 300px;
+    font-size: 28px;
+   }
+   .large#catalogue .item .iconholder img {
+    width: 24px;
+   }
+   .large#catalogue .iconholder {
+    bottom: -4px;
+    right: 4px;
    }
   </style>
  </head>
  <body onLoad="setupItems();">
   <h1>Computational and Visualisation Tools for<br/>Locally Compact Groups Acting on Discrete Structures</h1>
   <p>Shall we make this a wiki? <span lang="jp">これをウィキにしましょうか?</span></p>
+
+  <div id="controls">
+   Item size:
+   <img src="icons/trello.svg" onclick="catSize('small');"  width="18px" style="margin-bottom:2px">
+   <img src="icons/trello.svg" onclick="catSize('medium');" width="26px" style="margin-bottom:1px">
+   <img src="icons/trello.svg" onclick="catSize('large');"  width="34px">
+  </div>
 
   <div class="wrapper">
 
@@ -107,6 +157,16 @@
    </div>
 
   </div>
- <script src="items.js"></script>
+  <script src="items.js"></script>
+  <script>
+   function catSize(sz){
+    if (['small','medium','large'].indexOf(sz)>-1){
+     document.getElementById('catalogue').classList.remove('small');
+     document.getElementById('catalogue').classList.remove('medium');
+     document.getElementById('catalogue').classList.remove('large');
+     document.getElementById('catalogue').classList.add(sz);
+    }
+   }
+  </script>
  </body>
 </html>

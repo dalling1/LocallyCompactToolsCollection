@@ -81,9 +81,11 @@
    #details {
     width: 39%;
     padding: 15px;
-    min-height: 70vh;
+    height: 70vh;
     box-sizing: border-box;
     background-color: #fafafa;
+    position: sticky;
+    top: 10px;
    }
    #details h2 {
     margin: 5px 0;
@@ -138,7 +140,7 @@
  </head>
  <body onLoad="setupItems();">
   <h1>Computational and Visualisation Tools for<br/>Locally Compact Groups Acting on Discrete Structures</h1>
-  <p>Shall we make this a wiki? <span lang="jp">これをウィキにしましょうか?</span></p>
+  <p>A collection of on-line resources. <span lang="jp">インライン リソースのコレクション。</span></p>
 
   <div id="controls">
    Item size:
@@ -149,10 +151,10 @@
 
   <div class="wrapper">
 
-   <div id="catalogue"> <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+   <div id="catalogue">
    </div>
 
-   <div id="details"> <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <div id="details">
     <p>Click on an item to see its details. <span lang="jp">アイテムをクリックすると、詳細が表示されます。</span></p>
    </div>
 

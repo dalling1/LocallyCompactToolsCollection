@@ -5,10 +5,16 @@ function setupItems(){
  for (var i=0;i<items.length;i++){
   // make a div for this item
   var newitem = document.createElement('div');
-  newitem.classList.add("item");
+  newitem.className = 'item';
   newitem.id = `item${i+1}`;
-  newitem.innerHTML = `<p class="itemnumber">Item ${i+1}</p><p class="itemnumber" lang="jp">アイテム ${i+1}</p>
-<p class="itemname">${items[i].name}</p>`;
+  newitem.innerHTML = `\n <p class="itemnumber">Item ${i+1}</p>
+ <p class="itemnumber" lang="jp">アイテム ${i+1}</p>
+ <p class="itemname">${items[i].name}</p>\n`;
+  // add icons if there are tags on this item
+  if (items[i].hasOwnProperty('tags')){
+   newitem.innerHTML += ` <div class="iconholder">`+showIcons(items[i].tags)+`</div>\n`;
+  }
+
   newitem.onclick = function(){showItem(this.id)};
   // append it to the catalogue on the page
   catalogue.appendChild(newitem);
@@ -44,6 +50,31 @@ function clearDetails(){
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+function showIcons(tagstring){
+ // take a comma-separated string as input and return an array of
+ //  strings containing an icon name for each tag
+ var iconpath = 'icons/'; // should end in '/'
+
+ var icons = [];
+ var tags = tagstring.split(',');
+ for (var i=0;i<tags.length;i++){
+  switch (tags[i]){
+   case 'webpage': icons.push('layout.svg'); break;
+   case 'paper': icons.push('file-text.svg'); break;
+   case 'image': icons.push('image.svg'); break;
+   case 'tool': icons.push('tool.svg'); break;
+  }
+ }
+ // have the icon file names, so set up the HTML IMG code
+ var img = '';
+ for (var i=0;i<icons.length;i++){
+  img += `<img class="tagicon" src="${iconpath}${icons[i]}" alt="${tags[i]}" />`;
+ }
+
+ return img;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // define the items; we could add fields like tags, type, etc.
 var items = [];
 items[items.length] = {
@@ -53,6 +84,7 @@ items[items.length] = {
  'image': '',
  'reference': 'https://arxiv.org/abs/2011.11707',
  'source': '',
+ 'tags': 'webpage',
 };
 ///
 items[items.length] = {
@@ -62,6 +94,7 @@ items[items.length] = {
  'image': '',
  'reference': '',
  'source': '',
+ 'tags': 'webpage,tool',
 };
 ///
 items[items.length] = {
@@ -71,6 +104,7 @@ items[items.length] = {
  'image': '',
  'reference': '',
  'source': '',
+ 'tags': 'webpage,tool',
 };
 ///
 items[items.length] = {
@@ -80,6 +114,7 @@ items[items.length] = {
  'image': '',
  'reference': '',
  'source': 'https://github.com/dalling1/freeproductgraphs',
+ 'tags': 'webpage,tool',
 };
 ///
 items[items.length] = {
@@ -89,6 +124,7 @@ items[items.length] = {
  'image': '',
  'reference': '',
  'source': 'https://github.com/dalling1/labelregulartrees',
+ 'tags': 'webpage,tool',
 };
 ///
 items[items.length] = {
@@ -98,6 +134,7 @@ items[items.length] = {
  'image': '',
  'reference': '',
  'source': '',
+ 'tags': 'webpage',
 };
 ///
 items[items.length] = {
@@ -107,6 +144,7 @@ items[items.length] = {
  'image': '',
  'reference': 'https://dial.uclouvain.be/pr/boreal/object/boreal:182440',
  'source': '',
+ 'tags': 'paper',
 };
 ///
 items[items.length] = {
@@ -116,4 +154,5 @@ items[items.length] = {
  'image': '',
  'reference': '',
  'source': '',
+ 'tags': 'image',
 };

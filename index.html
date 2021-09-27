@@ -44,6 +44,7 @@
     align-content: flex-start;
    }
    #catalogue .item {
+    position: relative;
     width: 130px;
     height: 180px;
     border: 1px solid #222;
@@ -52,6 +53,7 @@
     padding: 5px;
     box-sizing: border-box;
     cursor: pointer;
+    background-color: #fff;
    }
    #catalogue .item:hover {
     border: 1px solid #722;
@@ -60,11 +62,24 @@
    #catalogue :lang(jp) {
     font-size: 0.5em;
    }
+   #catalogue .iconholder {
+    text-align: right;
+    position: absolute;
+    right: 1px;
+    bottom: -4px;
+   }
+   #catalogue .iconholder img {
+    width: 16px;
+   }
    #details {
-    width: 35%;
-    padding: 5px;
+    width: 39%;
+    padding: 15px;
     min-height: 70vh;
     box-sizing: border-box;
+    background-color: #fafafa;
+   }
+   #details h2 {
+    margin: 5px 0;
    }
    .itemnumber {
     padding: 0;

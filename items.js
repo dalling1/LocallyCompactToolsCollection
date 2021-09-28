@@ -59,21 +59,28 @@ function toggleLang(lang){
 
 ///////////////////////////////////////////////////////////////////////////////
 function toggleTag(tag=''){
- if (['image','paper','tool','video','webpage'].indexOf(tag)>-1){
-  var T = document.getElementsByClassName('tag:'+tag);
-  for (var i=0;i<T.length;i++){
-   if (T[i].parentElement.parentElement.classList.contains('shrink')){
-    T[i].parentElement.parentElement.classList.remove('shrink');
-   } else {
-    T[i].parentElement.parentElement.classList.add('shrink');
+ var allowedTags = ['image','paper','tool','video','webpage'];
+ // only operate if a legal tag was given:
+ if (allowedTags.indexOf(tag)>-1 || tag==''){
+  for (var i=0;i<allowedTags.length;i++){
+   // hide them all, or show all if tag=='':
+   var T = document.getElementsByClassName('tag:'+allowedTags[i]);
+   for (var t=0;t<T.length;t++){
+    if (tag==''){
+     T[t].parentElement.parentElement.classList.remove('shrink');
+    } else {
+     T[t].parentElement.parentElement.classList.add('shrink');
+    }
    }
   }
- } else if (tag==''){
-  var T = document.getElementsByClassName('shrink');
-  for (var i=T.length;i>0;i--){
-   T[i-1].classList.remove('shrink');
+
+  // and then show the requested tag:
+  var T = document.getElementsByClassName('tag:'+tag);
+  for (var t=0;t<T.length;t++){
+   T[t].parentElement.parentElement.classList.remove('shrink');
   }
  }
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -59,16 +59,17 @@ function showIcons(tagstring){
  var tags = tagstring.split(',');
  for (var i=0;i<tags.length;i++){
   switch (tags[i]){
-   case 'webpage': icons.push('layout.svg'); break;
-   case 'paper': icons.push('file-text.svg'); break;
    case 'image': icons.push('image.svg'); break;
+   case 'paper': icons.push('file-text.svg'); break;
    case 'tool': icons.push('tool.svg'); break;
+   case 'webpage': icons.push('layout.svg'); break;
+   case 'video': icons.push('video.svg'); break;
   }
  }
  // have the icon file names, so set up the HTML IMG code
  var img = '';
  for (var i=0;i<icons.length;i++){
-  img += `<img class="tagicon" src="${iconpath}${icons[i]}" alt="${tags[i]}" />`;
+  img += `<img class="tagicon" src="${iconpath}${icons[i]}" alt="${tags[i]}" title="${tags[i]}" />`;
  }
 
  return img;
@@ -156,3 +157,33 @@ items[items.length] = {
  'source': '',
  'tags': 'image',
 };
+///
+items[items.length] = {
+ 'name': 'GAP package for universal groups',
+ 'link': 'https://gap-packages.github.io/',
+ 'description': 'UGALY is a GAP package that provides methods to create, analyse and find local actions of generalised universal groups acting on locally finite regular trees, following Burger-Mozes and Tornier.',
+ 'image': '',
+ 'reference': 'http://www.numdam.org/item/PMIHES_2000__92__113_0/, https://arxiv.org/abs/2002.09876, https://www.youtube.com/watch?v=MsoE450ZZtg',
+ 'source': 'https://github.com/gap-packages/UGALY',
+ 'tags': 'tool,paper,video',
+}
+///
+items[items.length] = {
+ 'name': 'GAP package for self-replicating groups',
+ 'link': 'https://github.com/SamSGKing/SRGroups',
+ 'description': 'SRGroups is a GAP package for self-replicating groups in the sense of Horadam.',
+ 'image': '',
+ 'reference': 'https://nova.newcastle.edu.au/vital/access/manager/Repository/uon:17152, ',
+ 'source': 'https://github.com/SamSGKing/SRGroups',
+ 'tags': 'tool,paper',
+}
+///
+items[items.length] = {
+ 'name': 'TikZ/PSTricks templates for common graphs',
+ 'link': '',
+ 'description': 'A collection of TikZ and PSTricks snippets to include images of common graphs in LaTeX',
+ 'image': '',
+ 'reference': '',
+ 'source': '',
+ 'tags': 'tool',
+}

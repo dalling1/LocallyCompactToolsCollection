@@ -118,7 +118,7 @@ items[items.length] = {
 ///
 items[items.length] = {
  'name': 'Tree Focus Models',
- 'link': 'https://https://dalling1.github.io/focusmodels/',
+ 'link': 'https://dalling1.github.io/focusmodels/',
  'description': 'Tools for drawing regular trees in layouts focusing on a vertex, edge or axis.  Also a tool for drawing monochromatic rays.',
  'image': '',
  'reference': '',

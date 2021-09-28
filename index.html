@@ -37,7 +37,7 @@
    #controls img:hover {
     background-color: #f9c9c9;
    }
-   .wrapper {
+   #wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -120,39 +120,61 @@
    }
 
    /* add some size options: apply the 'small', 'medium', 'large' class to the catalogue DIV: */
-   .small#catalogue .item {
+   .small #catalogue .item {
     width: 70px;
     height: 110px;
     font-size: 10px;
    }
-   .small#catalogue .item .iconholder img {
+   .small #catalogue .item .iconholder img {
     width: 12px;
    }
-   .small#catalogue .iconholder {
+   .small #catalogue .iconholder {
     bottom: 0;
     right: 2px;
    }
 
-   .medium#catalogue .item {
+   .medium #catalogue .item {
     width: 130px;
     height: 180px;
     font-size: 20px;
    }
-   .medium#catalogue .item .iconholder img {
+   .medium #catalogue .item .iconholder img {
     width: 16px;
    }
+   .medium #catalogue .iconholder {
+    right: 1px;
+    bottom: -4px;
+   }
 
-   .large#catalogue .item {
+   .large #catalogue .item {
     width: 180px;
     height: 300px;
     font-size: 28px;
    }
-   .large#catalogue .item .iconholder img {
+   .large #catalogue .item .iconholder img {
     width: 24px;
    }
-   .large#catalogue .iconholder {
+   .large #catalogue .iconholder {
     bottom: -4px;
     right: 4px;
+   }
+
+   .small #catalogue .shrink,
+   .small #catalogue .shrink .iconholder,
+   .small #catalogue .shrink .iconholder img,
+   .medium #catalogue .shrink,
+   .medium #catalogue .shrink .iconholder,
+   .medium #catalogue .shrink .iconholder img,
+   .large #catalogue .shrink,
+   .large #catalogue .shrink .iconholder,
+   .large #catalogue .shrink .iconholder img
+   {
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
    }
   </style>
  </head>
@@ -165,12 +187,18 @@
    <img src="icons/trello.svg" onclick="catSize('small');"  width="18px" style="margin-bottom:2px">
    <img src="icons/trello.svg" onclick="catSize('medium');" width="26px" style="margin-bottom:1px">
    <img src="icons/trello.svg" onclick="catSize('large');"  width="34px">
+   Filter by tag:
+   <img class="xtagicon" onclick="toggleTag('image')" src="icons/image.svg" alt="image" title="image">
+   <img class="xtagicon" onclick="toggleTag('paper')" src="icons/file-text.svg" alt="paper" title="paper">
+   <img class="xtagicon" onclick="toggleTag('tool')" src="icons/tool.svg" alt="tool" title="tool">
+   <img class="xtagicon" onclick="toggleTag('video')" src="icons/video.svg" alt="video" title="video">
+   <img class="xtagicon" onclick="toggleTag('webpage')" src="icons/layout.svg" alt="webpage" title="webpage">
   </div>
   <div id="lang">
    <div class="flag" onclick="toggleLang('jp')"><div style="height:10px; width:10px; border-radius:10px; background-color:#f00; margin:2px auto;"></div></div>
   </div>
 
-  <div class="wrapper">
+  <div id="wrapper" class="medium">
 
    <div id="catalogue">
    </div>
@@ -184,10 +212,10 @@
   <script>
    function catSize(sz){
     if (['small','medium','large'].indexOf(sz)>-1){
-     document.getElementById('catalogue').classList.remove('small');
-     document.getElementById('catalogue').classList.remove('medium');
-     document.getElementById('catalogue').classList.remove('large');
-     document.getElementById('catalogue').classList.add(sz);
+     document.getElementById('wrapper').classList.remove('small');
+     document.getElementById('wrapper').classList.remove('medium');
+     document.getElementById('wrapper').classList.remove('large');
+     document.getElementById('wrapper').classList.add(sz);
     }
    }
   </script>

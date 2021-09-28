@@ -58,6 +58,20 @@ function toggleLang(lang){
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+function toggleTag(tag){
+ if (['image','paper','tool','video','webpage'].indexOf(tag)>-1){
+  var T = document.getElementsByClassName('tag:'+tag);
+  for (var i=0;i<T.length;i++){
+   if (T[i].parentElement.parentElement.classList.contains('shrink')){
+    T[i].parentElement.parentElement.classList.remove('shrink');
+   } else {
+    T[i].parentElement.parentElement.classList.add('shrink');
+   }
+  }
+ }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 function clearDetails(){
  var detailsDiv = document.getElementById("details");
  detailsDiv.innerHTML = '';
@@ -76,14 +90,14 @@ function showIcons(tagstring){
    case 'image': icons.push('image.svg'); break;
    case 'paper': icons.push('file-text.svg'); break;
    case 'tool': icons.push('tool.svg'); break;
-   case 'webpage': icons.push('layout.svg'); break;
    case 'video': icons.push('video.svg'); break;
+   case 'webpage': icons.push('layout.svg'); break;
   }
  }
  // have the icon file names, so set up the HTML IMG code
  var img = '';
  for (var i=0;i<icons.length;i++){
-  img += `<img class="tagicon" src="${iconpath}${icons[i]}" alt="${tags[i]}" title="${tags[i]}" />`;
+  img += `<img class="tagicon tag:${tags[i]}" src="${iconpath}${icons[i]}" alt="${tags[i]}" title="${tags[i]}" />`;
  }
 
  return img;
@@ -187,7 +201,7 @@ items[items.length] = {
  'link': 'https://github.com/SamSGKing/SRGroups',
  'description': 'SRGroups is a GAP package for self-replicating groups in the sense of Horadam.',
  'image': '',
- 'reference': 'https://nova.newcastle.edu.au/vital/access/manager/Repository/uon:17152, ',
+ 'reference': 'https://nova.newcastle.edu.au/vital/access/manager/Repository/uon:17152, http://videos.birs.ca/2021/21w5151/202108191530-Tornier.mp4',
  'source': 'https://github.com/SamSGKing/SRGroups',
  'tags': 'tool,paper',
 }

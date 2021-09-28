@@ -38,7 +38,11 @@ function showItem(id){
 function showDetails(n){
  var detailsDiv = document.getElementById("details");
  var detailsText = `<h2>${items[n].name}</h2>
- `+(items[n].link.length?`<a href="${items[n].link}">${items[n].link}</a>`:``)+`
+`+makeLinks('webpage',items[n].link)+`
+`+makeLinks('paper',items[n].reference)+`
+`+makeLinks('image',items[n].image)+`
+`+makeLinks('video',items[n].video)+`
+`+makeLinks('source',items[n].source)+`
  <p>${items[n].description}</p>`;
  detailsDiv.innerHTML = detailsText;
 }
@@ -59,7 +63,7 @@ function toggleLang(lang){
 
 ///////////////////////////////////////////////////////////////////////////////
 function toggleTag(tag=''){
- var allowedTags = ['image','paper','tool','video','webpage'];
+ var allowedTags = ['image','paper','source','tool','video','webpage'];
  // only operate if a legal tag was given:
  if (allowedTags.indexOf(tag)>-1 || tag==''){
   for (var i=0;i<allowedTags.length;i++){
@@ -91,16 +95,16 @@ function clearDetails(){
 
 ///////////////////////////////////////////////////////////////////////////////
 function showIcons(tagstring){
- // take a comma-separated string as input and return an array of
- //  strings containing an icon name for each tag
+ // take a comma-separated string as input and return a string
+ //  containing an icon img for each tag in the string
  var iconpath = 'icons/'; // should end in '/'
-
  var icons = [];
  var tags = tagstring.split(',');
  for (var i=0;i<tags.length;i++){
   switch (tags[i]){
    case 'image': icons.push('image.svg'); break;
    case 'paper': icons.push('file-text.svg'); break;
+   case 'source': icons.push('code.svg'); break;
    case 'tool': icons.push('tool.svg'); break;
    case 'video': icons.push('video.svg'); break;
    case 'webpage': icons.push('layout.svg'); break;
@@ -113,4 +117,21 @@ function showIcons(tagstring){
  }
 
  return img;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+function makeLinks(type,datastring){
+ // take a comma-separated string as input and return a string
+ //  containing an image (according to the given type) and a P tag and
+ //  hyperlink for each item in the string
+//console.log('requested type '+type);
+//console.log(showIcons(type));
+ var output = ``;
+ if (datastring.length){
+  var data = datastring.split(',');
+  for (var i=0;i<data.length;i++){
+   output += `<p><a href="${data[i]}">`+showIcons(type)+data[i]+`</a></p>\n`;
+  }
+ }
+ return output;
 }

@@ -102,6 +102,10 @@
    #details h2 {
     margin: 5px 0;
    }
+   #details .tagicon {
+    vertical-align: middle;
+    margin-right: 5px;
+   }
    #catalogue .itemnumber {
     padding: 0;
     margin: 0;
@@ -194,11 +198,12 @@
    <img src="icons/trello.svg" onclick="catSize('medium');" width="26px" style="margin-bottom:1px">
    <img src="icons/trello.svg" onclick="catSize('large');"  width="34px">
    Filter by tag:
-   <img class="xtagicon" onclick="toggleTag('image')" src="icons/image.svg" alt="image" title="image">
-   <img class="xtagicon" onclick="toggleTag('paper')" src="icons/file-text.svg" alt="paper" title="paper">
-   <img class="xtagicon" onclick="toggleTag('tool')" src="icons/tool.svg" alt="tool" title="tool">
-   <img class="xtagicon" onclick="toggleTag('video')" src="icons/video.svg" alt="video" title="video">
-   <img class="xtagicon" onclick="toggleTag('webpage')" src="icons/layout.svg" alt="webpage" title="webpage">
+   <img onclick="toggleTag('image')" src="icons/image.svg" alt="image" title="image">
+   <img onclick="toggleTag('paper')" src="icons/file-text.svg" alt="paper" title="paper">
+   <img onclick="toggleTag('source')" src="icons/code.svg" alt="source" title="source">
+   <img onclick="toggleTag('tool')" src="icons/tool.svg" alt="tool" title="tool">
+   <img onclick="toggleTag('video')" src="icons/video.svg" alt="video" title="video">
+   <img onclick="toggleTag('webpage')" src="icons/layout.svg" alt="webpage" title="webpage">
    <span class="control" onclick="toggleTag()">SHOW ALL</span>
   </div>
   <div id="lang">

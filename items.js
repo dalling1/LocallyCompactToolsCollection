@@ -1,4 +1,5 @@
 // define the items; we could add fields like tags, type, etc.
+// if Latex code is used, slashes need to be escaped, eg. $x^2 + \\frac{1}{2+x}$
 var items = [];
 items.push({
  'name': 'Buildings Gallery',
@@ -25,7 +26,7 @@ items.push({
 items.push({
  'name': 'Bruhat-Tits Tree Visualiser',
  'link': 'https://ariymarkowitz.github.io/Bruhat-Tits-Tree-Visualiser/',
- 'description': 'A visualiser of the Bruhat-Tits tree over ℚp, and the action of GL(2, ℚp) on the tree.',
+ 'description': 'A visualiser of the Bruhat-Tits tree over $\\mathbb{Q}_p$, and the action of $PGL(2, \\mathbb{Q}_p)$ on the tree.',
  'image': '',
  'video': '',
  'reference': '',

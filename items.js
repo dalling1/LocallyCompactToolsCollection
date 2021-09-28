@@ -3,7 +3,7 @@ var items = [];
 items.push({
  'name': 'Buildings Gallery',
  'link': 'https://buildings.gallery',
- 'description': 'Some description should go here.',
+ 'description': 'Visualisation tool for buildings which are constructed of simplicial complexes.',
  'image': '',
  'video': '',
  'reference': 'https://arxiv.org/abs/2011.11707',

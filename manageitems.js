@@ -130,7 +130,7 @@ function makeLinks(type,datastring){
  if (datastring.length){
   var data = datastring.split(',');
   for (var i=0;i<data.length;i++){
-   output += `<p><a href="${data[i]}">`+showIcons(type)+data[i]+`</a></p>\n`;
+   output += `<p><a class="detaillink" href="${data[i]}">`+showIcons(type)+data[i]+`</a></p>\n`;
   }
  }
  return output;

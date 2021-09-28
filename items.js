@@ -41,7 +41,7 @@ items.push({
  'video': '',
  'reference': '',
  'source': 'https://github.com/dalling1/freeproductgraphs',
- 'tags': 'webpage,tool',
+ 'tags': 'webpage,tool,source',
 });
 ///
 items.push({
@@ -52,7 +52,7 @@ items.push({
  'video': '',
  'reference': '',
  'source': 'https://github.com/dalling1/labelregulartrees',
- 'tags': 'webpage,tool',
+ 'tags': 'webpage,tool,source',
 });
 ///
 items.push({
@@ -96,7 +96,7 @@ items.push({
  'video': 'https://www.youtube.com/watch?v=MsoE450ZZtg',
  'reference': 'http://www.numdam.org/item/PMIHES_2000__92__113_0/, https://arxiv.org/abs/2002.09876',
  'source': 'https://github.com/gap-packages/UGALY',
- 'tags': 'tool,paper,video',
+ 'tags': 'tool,paper,video,source',
 });
 ///
 items.push({
@@ -107,7 +107,7 @@ items.push({
  'video': 'http://videos.birs.ca/2021/21w5151/202108191530-Tornier.mp4',
  'reference': 'https://nova.newcastle.edu.au/vital/access/manager/Repository/uon:17152',
  'source': 'https://github.com/SamSGKing/SRGroups',
- 'tags': 'tool,paper',
+ 'tags': 'tool,paper,source,video',
 });
 ///
 items.push({

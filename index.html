@@ -29,12 +29,16 @@
     background-color: #fdfdfd;
     font-size: 16px;
    }
-   #controls img {
+   #controls img,
+   #controls .control
+   {
     vertical-align: bottom;
     cursor: pointer;
     border-radius: 5px;
    }
-   #controls img:hover {
+   #controls img:hover,
+   #controls .control:hover
+   {
     background-color: #f9c9c9;
    }
    #wrapper {
@@ -194,6 +198,7 @@
    <img class="xtagicon" onclick="toggleTag('tool')" src="icons/tool.svg" alt="tool" title="tool">
    <img class="xtagicon" onclick="toggleTag('video')" src="icons/video.svg" alt="video" title="video">
    <img class="xtagicon" onclick="toggleTag('webpage')" src="icons/layout.svg" alt="webpage" title="webpage">
+   <span class="control" onclick="toggleTag()">SHOW ALL</span>
   </div>
   <div id="lang">
    <div class="flag" onclick="toggleLang('jp')"><div style="height:10px; width:10px; border-radius:10px; background-color:#f00; margin:2px auto;"></div></div>

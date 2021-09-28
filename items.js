@@ -58,7 +58,7 @@ function toggleLang(lang){
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-function toggleTag(tag){
+function toggleTag(tag=''){
  if (['image','paper','tool','video','webpage'].indexOf(tag)>-1){
   var T = document.getElementsByClassName('tag:'+tag);
   for (var i=0;i<T.length;i++){
@@ -67,6 +67,11 @@ function toggleTag(tag){
    } else {
     T[i].parentElement.parentElement.classList.add('shrink');
    }
+  }
+ } else if (tag==''){
+  var T = document.getElementsByClassName('shrink');
+  for (var i=T.length;i>0;i--){
+   T[i-1].classList.remove('shrink');
   }
  }
 }

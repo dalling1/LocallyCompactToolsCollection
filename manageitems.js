@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 function setupItems(){
  // add the items to the webpage
- var catalogue = document.getElementById("catalogue");
+ var catalogueDiv = document.getElementById("catalogue");
  for (var i=0;i<items.length;i++){
   // make a div for this item
   var newitem = document.createElement('div');
@@ -14,11 +14,14 @@ function setupItems(){
   if (items[i].hasOwnProperty('tags')){
    newitem.innerHTML += ` <div class="iconholder">`+showIcons(items[i].tags)+`</div>\n`;
   }
-
+  // set the on-click behaviour to show the item details
   newitem.onclick = function(){showItem(this.id)};
   // append it to the catalogue on the page
-  catalogue.appendChild(newitem);
+  catalogueDiv.appendChild(newitem);
  }
+
+ // typeset the catalogue content
+ if (typeof(MathJax)) MathJax.typesetPromise([catalogueDiv]);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -45,6 +48,10 @@ function showDetails(n){
 `+makeLinks('source',items[n].source)+`
  <p>${items[n].description}</p>`;
  detailsDiv.innerHTML = detailsText;
+
+ // typeset the detail content
+ if (typeof(MathJax)) MathJax.typesetPromise([detailsDiv]);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

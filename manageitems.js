@@ -99,7 +99,7 @@ function showIcons(tagstring){
  //  containing an icon img for each tag in the string
  var iconpath = 'icons/'; // should end in '/'
  var icons = [];
- var tags = tagstring.split(',');
+ var tags = tagstring.trim().split(new RegExp(/ *, */));
  for (var i=0;i<tags.length;i++){
   switch (tags[i]){
    case 'image': icons.push('image.svg'); break;
@@ -124,11 +124,9 @@ function makeLinks(type,datastring){
  // take a comma-separated string as input and return a string
  //  containing an image (according to the given type) and a P tag and
  //  hyperlink for each item in the string
-//console.log('requested type '+type);
-//console.log(showIcons(type));
  var output = ``;
  if (datastring.length){
-  var data = datastring.split(',');
+  var data = datastring.trim().split(new RegExp(/ *, */));
   for (var i=0;i<data.length;i++){
    output += `<p><a class="detaillink" href="${data[i]}">`+showIcons(type)+data[i]+`</a></p>\n`;
   }

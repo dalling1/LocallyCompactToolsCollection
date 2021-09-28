@@ -8,7 +8,7 @@ function setupItems(){
   newitem.className = 'item';
   newitem.id = `item${i+1}`;
   newitem.innerHTML = `\n <p class="itemnumber">Item ${i+1}</p>
- <p class="itemnumber" lang="jp">アイテム ${i+1}</p>
+ <p class="itemnumber hidden" lang="jp" >アイテム ${i+1}</p>
  <p class="itemname">${items[i].name}</p>\n`;
   // add icons if there are tags on this item
   if (items[i].hasOwnProperty('tags')){
@@ -41,6 +41,20 @@ function showDetails(n){
  `+(items[n].link.length?`<a href="${items[n].link}">${items[n].link}</a>`:``)+`
  <p>${items[n].description}</p>`;
  detailsDiv.innerHTML = detailsText;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+function toggleLang(lang){
+ if (['jp'].indexOf(lang)>-1){
+  var L = document.querySelectorAll(':lang("'+lang+'")');
+  for (var i=0;i<L.length;i++){
+   if (L[i].classList.contains('hidden')){
+    L[i].classList.remove('hidden');
+   } else {
+    L[i].classList.add('hidden');
+   }
+  }
+ }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -107,6 +107,17 @@
     margin: 0;
     font-size: 1.0em;
    }
+   #lang {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+   }
+   .flag {
+    width: 20px;
+    height: 16px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+   }
 
    /* add some size options: apply the 'small', 'medium', 'large' class to the catalogue DIV: */
    .small#catalogue .item {
@@ -147,13 +158,16 @@
  </head>
  <body onLoad="setupItems();">
   <h1>Computational and Visualisation Tools for<br/>Locally Compact Groups Acting on Discrete Structures</h1>
-  <p>A collection of on-line resources. <span lang="jp">インライン リソースのコレクション。</span></p>
+  <p>A collection of on-line resources. <span lang="jp" class="hidden">インライン リソースのコレクション。</span></p>
 
   <div id="controls">
    Item size:
    <img src="icons/trello.svg" onclick="catSize('small');"  width="18px" style="margin-bottom:2px">
    <img src="icons/trello.svg" onclick="catSize('medium');" width="26px" style="margin-bottom:1px">
    <img src="icons/trello.svg" onclick="catSize('large');"  width="34px">
+  </div>
+  <div id="lang">
+   <div class="flag" onclick="toggleLang('jp')"><div style="height:10px; width:10px; border-radius:10px; background-color:#f00; margin:2px auto;"></div></div>
   </div>
 
   <div class="wrapper">
@@ -162,7 +176,7 @@
    </div>
 
    <div id="details">
-    <p>Click on an item to see its details. <span lang="jp">アイテムをクリックすると、詳細が表示されます。</span></p>
+    <p>Click on an item to see its details. <span lang="jp" class="hidden">アイテムをクリックすると、詳細が表示されます。</span></p>
    </div>
 
   </div>

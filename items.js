@@ -2,20 +2,22 @@
 // if Latex code is used, slashes need to be escaped, eg. $x^2 + \\frac{1}{2+x}$
 var items = [];
 items.push({
- 'name': 'Buildings Gallery',
+ 'name': 'The Buildings Gallery',
+ 'creator': 'Bram Bekker',
  'link': 'https://buildings.gallery',
- 'description': 'Visualisation tool for buildings which are constructed of simplicial complexes.',
+ 'description': 'Visualisation tool for some spherical and affine buildings.',
  'image': '',
  'video': '',
  'reference': 'https://arxiv.org/abs/2011.11707',
  'source': '',
- 'tags': 'webpage',
+ 'tags': 'webpage,paper,tool',
 });
 ///
 items.push({
- 'name': 'Tree Focus Models',
+ 'name': 'Drawing tool for regular trees',
+ 'creator': 'David Allingham',
  'link': 'https://dalling1.github.io/focusmodels/',
- 'description': 'Tools for drawing regular trees in layouts focusing on a vertex, edge or axis.  Also a tool for drawing monochromatic rays.',
+ 'description': 'Tools for drawing regular trees in layouts focusing on a vertex, edge, axis or ray.',
  'image': '',
  'video': '',
  'reference': '',
@@ -24,9 +26,10 @@ items.push({
 });
 ///
 items.push({
- 'name': 'Bruhat-Tits Tree Visualiser',
+ 'name': 'Visualiser of the action $\\mathrm{PGL}(2,\\mathbb{Q}_{p})$ $\\curvearrowright T_{p+1}$.',
+ 'creator': 'Ari Markowitz',
  'link': 'https://ariymarkowitz.github.io/Bruhat-Tits-Tree-Visualiser/',
- 'description': 'A visualiser of the Bruhat-Tits tree over $\\mathbb{Q}_p$, and the action of $PGL(2, \\mathbb{Q}_p)$ on the tree.',
+ 'description': 'A visualiser for the action of $\\mathrm{PGL}(2,\\mathbb{Q}_{p})$ on its Bruhat-Tits tree.',
  'image': '',
  'video': '',
  'reference': '',
@@ -35,20 +38,22 @@ items.push({
 });
 ///
 items.push({
- 'name': 'Free Products of Graphs',
+ 'name': 'Drawing tool for free product graphs',
+ 'creator': 'David Allingham',
  'link': 'https://dalling1.github.io/freeproductgraphs/',
- 'description': 'Draws the free product of user-specified graphs.',
+ 'description': 'A tool for drawing the free product of user-specified graphs.',
  'image': '',
  'video': '',
- 'reference': '',
+ 'reference': 'https://arxiv.org/abs/2002.10639',
  'source': 'https://github.com/dalling1/freeproductgraphs',
- 'tags': 'webpage,tool,source',
+ 'tags': 'webpage,tool,source,paper',
 });
 ///
 items.push({
- 'name': 'Label-Regular Trees',
+ 'name': 'Drawing tool for label-regular trees',
+ 'creator': 'David Allingham',
  'link': 'https://dalling1.github.io/labelregulartrees/',
- 'description': 'A tool to draw label-regular trees using a user-specified generating matrix.',
+ 'description': 'A tool for drawing a label-regular tree from a user-specified generating matrix.',
  'image': '',
  'video': '',
  'reference': '',
@@ -58,6 +63,7 @@ items.push({
 ///
 items.push({
  'name': 'Zero-Dimensional Symmetry Research Group',
+ 'creator': '',
  'link': 'https://zerodimensional.group/',
  'description': 'Home page of the Zero-Dimensional Symmetry research group, based at the University of Newcastle but with members across the globe.',
  'image': '',
@@ -68,7 +74,8 @@ items.push({
 });
 ///
 items.push({
- 'name': 'Classification for certain automorphism groups of trees',
+ 'name': 'Boundary $2$-transitive groups acting on trees',
+ 'creator': 'Nicolas Radu',
  'link': '',
  'description': 'Paper by Nicholas Radu entitled "A classification theorem for boundary 2-transitive automorphism groups of trees".',
  'image': '',
@@ -80,8 +87,9 @@ items.push({
 ///
 items.push({
  'name': 'CARMA Spikeys',
+ 'creator': 'Andrew Mattingly (3D construction), David Allingham (rendering)',
  'link': '',
- 'description': '3D rendering of a small building.',
+ 'description': '3D rendering of a small part of a Bruhat-Tits building.',
  'image': 'https://carma.edu.au/art/img/carmaspikeys-2-03.jpg',
  'video': '',
  'reference': '',
@@ -91,6 +99,7 @@ items.push({
 ///
 items.push({
  'name': 'GAP package for universal groups',
+ 'creator': 'Khalil Hannouch, Stephan Tornier',
  'link': 'https://gap-packages.github.io/',
  'description': 'UGALY is a GAP package that provides methods to create, analyse and find local actions of generalised universal groups acting on locally finite regular trees, following Burger-Mozes and Tornier.',
  'image': '',
@@ -102,6 +111,7 @@ items.push({
 ///
 items.push({
  'name': 'GAP package for self-replicating groups',
+ 'creator': 'Samuel King, Sarah Shotter, Stephan Tornier',
  'link': 'https://github.com/SamSGKing/SRGroups',
  'description': 'SRGroups is a GAP package for self-replicating groups in the sense of Horadam.',
  'image': '',
@@ -112,9 +122,10 @@ items.push({
 });
 ///
 items.push({
- 'name': 'TikZ/PSTricks templates for common graphs',
+ 'name': 'TikZ/PSTricks templates',
+ 'creator': '',
  'link': '',
- 'description': 'A collection of TikZ and PSTricks snippets to include images of common graphs in LaTeX',
+ 'description': 'A collection of TikZ and PSTricks snippets to include common images in LaTeX',
  'image': '',
  'video': '',
  'reference': '',

@@ -41,6 +41,7 @@ function showItem(id){
 function showDetails(n){
  var detailsDiv = document.getElementById("details");
  var detailsText = `<h2>${items[n].name}</h2>
+`+makeLinks('creator',items[n].creator)+`
 `+makeLinks('webpage',items[n].link)+`
 `+makeLinks('paper',items[n].reference)+`
 `+makeLinks('image',items[n].image)+`
@@ -109,6 +110,8 @@ function showIcons(tagstring){
  var tags = tagstring.trim().split(new RegExp(/ *, */));
  for (var i=0;i<tags.length;i++){
   switch (tags[i]){
+   case 'creator': icons.push('user.svg'); break;
+   case 'creators': icons.push('users.svg'); break;
    case 'image': icons.push('image.svg'); break;
    case 'paper': icons.push('file-text.svg'); break;
    case 'source': icons.push('code.svg'); break;
@@ -135,7 +138,11 @@ function makeLinks(type,datastring){
  if (datastring.length){
   var data = datastring.trim().split(new RegExp(/ *, */));
   for (var i=0;i<data.length;i++){
-   output += `<p><a class="detaillink" href="${data[i]}">`+showIcons(type)+data[i]+`</a></p>\n`;
+   if (type=='creator'){
+    output += `<p style="margin:6px 0;">`+showIcons(type)+data[i]+`</p>\n`;
+   } else {
+    output += `<p><a class="detaillink" href="${data[i]}">`+showIcons(type)+data[i]+`</a></p>\n`;
+   }
   }
  }
  return output;

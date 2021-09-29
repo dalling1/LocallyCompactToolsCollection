@@ -3,6 +3,8 @@ function setupItems(){
  // add the items to the webpage
  var catalogueDiv = document.getElementById("catalogue");
  for (var i=0;i<items.length;i++){
+  // set an index for each item (to allow easy identification of the associated DOM entity)
+  items[i].index = i+1;
   // make a div for this item
   var newitem = document.createElement('div');
   newitem.className = 'item';
@@ -146,4 +148,56 @@ function makeLinks(type,datastring){
   }
  }
  return output;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+function hideItem(itemnumber=-1){
+ // only operate if a legal item number was given:
+ if (itemnumber<=items.length){
+  // hide all items if no argument is provided
+  if (itemnumber==-1){
+   for (var i=0;i<items.length;i++) hideItem(i+1);
+  } else {
+   document.getElementById('item'+itemnumber).classList.add('shrink');
+  }
+ }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+function showItem(itemnumber=-1){
+ // only operate if a legal item number was given:
+ if (itemnumber<=items.length){
+  // show all items if no argument is provided
+  if (itemnumber==-1){
+   for (var i=0;i<items.length;i++) showItem(i+1);
+  } else {
+   document.getElementById('item'+itemnumber).classList.remove('shrink');
+  }
+ }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+function runSearch(){
+ // get the search term and use it to filter the items;
+ // could add OR functionality eg. using commas to separate search terms
+ var searchstring = document.getElementById('search').value.trim();
+
+ // filter if a non-zero-length string was given:
+ if (searchstring.length){
+  var search = searchstring.trim().split(new RegExp(/ *, */));
+  // initially, hide all items
+  hideItem();
+  // filter the items by the search terms: (case-insensitive search)
+  for (var i=0;i<search.length;i++){
+   var matchingitems = items.filter(x=>x.name.search(new RegExp(search[i],'i'))>-1)
+   // show matching items
+   for (var k=0;k<matchingitems.length;k++){
+    showItem(matchingitems[k].index);
+   }
+  }
+ } else {
+  // otherwise, show everything:
+  showItem();
+ }
 }

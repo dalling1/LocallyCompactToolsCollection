@@ -137,6 +137,13 @@
     border: 1px solid #000;
     box-sizing: border-box;
    }
+   #search {
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 2px;
+    color: #c66363;
+   }
 
    /* add some size options: apply the 'small', 'medium', 'large' class to the catalogue DIV: */
    .small #catalogue .item {
@@ -214,6 +221,9 @@
    <img onclick="toggleTag('video')" src="icons/video.svg" alt="video" title="video">
    <img onclick="toggleTag('webpage')" src="icons/layout.svg" alt="webpage" title="webpage">
    <span class="control" onclick="toggleTag()">SHOW ALL</span>
+
+   <img src="icons/search.svg" alt="search" title="search" id="searchicon" onclick="document.getElementById('search').focus()">
+   <input type="text" id="search" placeholder="search" oninput="runSearch()" />
   </div>
   <div id="lang">
    <div class="flag" onclick="toggleLang('jp')"><div style="height:10px; width:10px; border-radius:10px; background-color:#f00; margin:2px auto;"></div></div>

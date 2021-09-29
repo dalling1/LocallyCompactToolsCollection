@@ -125,7 +125,7 @@ items.push({
  'name': 'TikZ/PSTricks templates',
  'creator': '',
  'link': '',
- 'description': 'A collection of TikZ and PSTricks snippets to include common images in LaTeX',
+ 'description': 'A collection of TikZ and PSTricks code snippets to include common images in LaTeX.',
  'image': '',
  'video': '',
  'reference': '',

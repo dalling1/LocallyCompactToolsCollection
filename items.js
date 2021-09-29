@@ -14,15 +14,15 @@ items.push({
 });
 ///
 items.push({
- 'name': 'Drawing tool for regular trees',
+ 'name': 'Focus-model drawing tool for regular trees',
  'creator': 'David Allingham',
  'link': 'https://dalling1.github.io/focusmodels/',
  'description': 'Tools for drawing regular trees in layouts focusing on a vertex, edge, axis or ray.',
  'image': '',
  'video': '',
  'reference': '',
- 'source': '',
- 'tags': 'webpage,tool',
+ 'source': 'https://github.com/dalling1/focusmodels',
+ 'tags': 'webpage,tool,source',
 });
 ///
 items.push({

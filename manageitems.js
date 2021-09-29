@@ -190,10 +190,12 @@ function runSearch(){
   hideItem();
   // filter the items by the search terms: (case-insensitive search)
   for (var i=0;i<search.length;i++){
-   var matchingitems = items.filter(x=>x.name.search(new RegExp(search[i],'i'))>-1)
-   // show matching items
-   for (var k=0;k<matchingitems.length;k++){
-    showItem(matchingitems[k].index);
+   if (search[i].length){
+    var matchingitems = items.filter(x=>x.name.search(new RegExp(search[i],'i'))>-1)
+    // show matching items
+    for (var k=0;k<matchingitems.length;k++){
+     showItem(matchingitems[k].index);
+   }
    }
   }
  } else {

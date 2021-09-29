@@ -61,9 +61,12 @@ function showDetails(n){
 function toggleLang(lang){
  if (['jp'].indexOf(lang)>-1){
   var L = document.querySelectorAll(':lang("'+lang+'")');
+  document.getElementById('search').placeholder = 'search'; // reset placeholder
   for (var i=0;i<L.length;i++){
    if (L[i].classList.contains('hidden')){
     L[i].classList.remove('hidden');
+    // if any 'jp' item is not hidden, update the search placeholder text
+    document.getElementById('search').placeholder = 'search 捜索';
    } else {
     L[i].classList.add('hidden');
    }

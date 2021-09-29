@@ -17,7 +17,7 @@ function setupItems(){
    newitem.innerHTML += ` <div class="iconholder">`+showIcons(items[i].tags)+`</div>\n`;
   }
   // set the on-click behaviour to show the item details
-  newitem.onclick = function(){showItem(this.id)};
+  newitem.onclick = function(){showItemDetails(this.id)};
   // append it to the catalogue on the page
   catalogueDiv.appendChild(newitem);
  }
@@ -27,7 +27,7 @@ function setupItems(){
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-function showItem(id){
+function showItemDetails(id){
  var n = parseInt(id.replace("item",""));
  if (n<=items.length){
   console.log("Clicked item: "+items[n-1].name);

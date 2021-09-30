@@ -202,6 +202,25 @@
     margin: 0;
     padding: 0;
    }
+   .searchwithclear {
+    display: inline-block;
+    position: relative;
+   }
+   #clearsearch {
+    position: absolute;
+    right: 2px;
+    top: 3px;
+   }
+   #clearsearch img {
+    opacity: 0.25;
+    transition: all 0.2s ease;
+   }
+   #clearsearch img:hover {
+    opacity: 0.5;
+    background-color: initial;
+    transition: all 0.2s ease;
+   }
+
   </style>
  </head>
  <body onload="setupItems();">
@@ -222,7 +241,10 @@
    <img onclick="toggleTag('webpage')" src="icons/layout.svg" alt="webpage" title="webpage">
    <span class="control" onclick="toggleTag()">SHOW ALL</span>
    <img src="icons/search.svg" alt="search" title="search" id="searchicon" onclick="document.getElementById('search').focus()">
-   <input type="search" id="search" placeholder="search" oninput="runSearch()" />
+   <div class="searchwithclear">
+    <input type="search" id="search" placeholder="search" oninput="runSearch()" />
+    <span id="clearsearch" onclick="document.getElementById('search').value=''; document.getElementById('search').focus(); runSearch();"><img src="icons/x-circle.svg" alt="clear" title="clear"></span>
+   </div>
    <input type="checkbox" id="searchcase" checked="checked" onchange="runSearch()" /> <span title="Do a case-insensitive search">ignore case</span>
    <input type="checkbox" id="searchdetail" checked="checked" onchange="runSearch()" /> <span title="Search item details, not just the title">search details</span>
   </div>

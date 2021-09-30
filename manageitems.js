@@ -1,5 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 function setupItems(){
+ // sort them first
+ items.sort(function(a,b){
+  return a.name.localeCompare(b.name);
+ });
+
  // add the items to the webpage
  var catalogueDiv = document.getElementById("catalogue");
  for (var i=0;i<items.length;i++){

@@ -14,6 +14,8 @@ function setupItems(){
   var newitem = document.createElement('div');
   newitem.className = 'item';
   newitem.id = `item${i+1}`;
+  newitem.draggable = true;
+  newitem.ondragstart = function(){dragStart(event)};
   newitem.innerHTML = `\n <p class="itemnumber">Item ${i+1}</p>
  <p class="itemnumber hidden" lang="jp" >アイテム ${i+1}</p>
  <p class="itemname">${items[i].name}</p>\n`;
@@ -219,3 +221,19 @@ function runSearch(){
   showItem();
  }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// the usual drag functions
+function dragStart(event) {
+ event.dataTransfer.setData("Text", event.target.id.replace("item",""));
+}
+function allowDrop(event) {
+ event.preventDefault();
+}
+function drop(event) {
+ event.preventDefault();
+ var data = event.dataTransfer.getData("Text");
+ showItemDetails(data);
+}
+
+///////////////////////////////////////////////////////////////////////////////

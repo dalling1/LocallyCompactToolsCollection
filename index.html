@@ -31,6 +31,8 @@
     color: #999;
    }
    .heading {
+    margin: 0 auto 40px auto;
+    width: 70vw;
    }
    #controls {
     font-size: 16px;
@@ -224,8 +226,11 @@
   </style>
  </head>
  <body onload="setupItems();">
-  <h1>Computational and Visualisation Tools for<br/>Locally Compact Groups Acting on Discrete Structures</h1>
-  <p>A collection of on-line resources. <span lang="jp" class="hidden">インライン リソースのコレクション。</span></p>
+  <div class="heading">
+   <h1>Computational and Visualisation Tools for Locally Compact Groups Acting on Discrete Structures</h1>
+   <p>A collection of on-line resources.  Click an item to see its details, or drag it into the right-hand area. Search terms can be separated by commas to perform an "or" search.
+   <span lang="jp" class="hidden">インライン リソースのコレクション。アイテムをクリックして詳細を表示するか、右側の領域にドラッグします。検索語はカンマで区切って「または」検索を実行できます。</span></p>
+  </div>
 
   <div id="controls">
    Item size:
@@ -258,8 +263,9 @@
    <div id="catalogue">
    </div>
 
-   <div id="details">
-    <p>Click on an item to see its details. <span lang="jp" class="hidden">アイテムをクリックすると、詳細が表示されます。</span></p>
+   <div id="details" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <p>Click on an item, or drag it into this box, to see its details.
+    <span lang="jp" class="hidden">アイテムをクリックするか、このボックスにドラッグして詳細を表示します。</span></p>
    </div>
 
   </div>

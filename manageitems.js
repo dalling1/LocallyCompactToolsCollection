@@ -183,8 +183,11 @@ function showItem(itemnumber=-1){
 ///////////////////////////////////////////////////////////////////////////////
 function runSearch(){
  // get the search term and use it to filter the items;
- // could add OR functionality eg. using commas to separate search terms
+ // could add OR functionality eg. using commas to separate search terms;
+ // the showItems() approach is a little clunky -- could be replaced with a simple .classList.remove(...)
  var searchstring = document.getElementById('search').value.trim();
+ var ignorecase = document.getElementById('searchcase').checked;
+ var searchdetail = document.getElementById('searchdetail').checked;
 
  // filter if a non-zero-length string was given:
  if (searchstring.length){
@@ -194,11 +197,16 @@ function runSearch(){
   // filter the items by the search terms: (case-insensitive search)
   for (var i=0;i<search.length;i++){
    if (search[i].length){
-    var matchingitems = items.filter(x=>x.name.search(new RegExp(search[i],'i'))>-1)
+    var matchingitems = items.filter(x=>x.name.search(new RegExp(search[i],(ignorecase?'i':'')))>-1)
+    // should we also search in the details and creator? (what about links, etc.?)
+    if (searchdetail){
+     var morematchingitems = items.filter(x=>x.description.search(new RegExp(search[i],(ignorecase?'i':'')))>-1)
+     matchingitems = matchingitems.concat(morematchingitems);
+     var morematchingitems = items.filter(x=>x.creator.search(new RegExp(search[i],(ignorecase?'i':'')))>-1)
+     matchingitems = matchingitems.concat(morematchingitems);
+    }
     // show matching items
-    for (var k=0;k<matchingitems.length;k++){
-     showItem(matchingitems[k].index);
-   }
+    for (var k=0;k<matchingitems.length;k++) showItem(matchingitems[k].index);
    }
   }
  } else {

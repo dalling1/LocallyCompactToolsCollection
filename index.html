@@ -221,10 +221,12 @@
    <img onclick="toggleTag('video')" src="icons/video.svg" alt="video" title="video">
    <img onclick="toggleTag('webpage')" src="icons/layout.svg" alt="webpage" title="webpage">
    <span class="control" onclick="toggleTag()">SHOW ALL</span>
-
    <img src="icons/search.svg" alt="search" title="search" id="searchicon" onclick="document.getElementById('search').focus()">
-   <input type="text" id="search" placeholder="search" oninput="runSearch()" />
+   <input type="search" id="search" placeholder="search" oninput="runSearch()" />
+   <input type="checkbox" id="searchcase" checked="checked" onchange="runSearch()" /> <span title="Do a case-insensitive search">ignore case</span>
+   <input type="checkbox" id="searchdetail" checked="checked" onchange="runSearch()" /> <span title="Search item details, not just the title">search details</span>
   </div>
+
   <div id="lang">
    <div class="flag" onclick="toggleLang('jp')"><div style="height:10px; width:10px; border-radius:10px; background-color:#f00; margin:2px auto;"></div></div>
   </div>

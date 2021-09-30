@@ -31,6 +31,17 @@ function setupItems(){
 
  // typeset the catalogue content
  if (typeof(MathJax)) MathJax.typesetPromise([catalogueDiv]);
+
+ // test whether there is already a cookie, in which the user's item-viewing history
+ // might be stored
+ if (itemHistory().length){
+  showItemDetails(lastViewedItem());
+ } else {
+  // if not, set it so that the page can remember which items have been displayed;
+  // this is particularly useful if the user follows a link on an item and then
+  // returns to this page: we can re-display the item that they had been looking at
+  setHistory();
+ }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -39,10 +50,14 @@ function showItemDetails(id){
  if (n<=items.length){
   console.log("Clicked item: "+items[n-1].name);
   showDetails(n-1);
+  // store the items which the user views, so that we can recall them if requested
+  // (or, for example, the user leaves the page and then returns later)
+  addToHistory(n);
  } else {
   // no details for this item
   console.log("Clicked item "+n+" (no details available)");
   clearDetails();
+  // nothing to add to the history
  }
 }
 
@@ -237,3 +252,60 @@ function drop(event) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// function from https://www.w3schools.com/js/js_cookies.asp
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+///////////////////////////////////////////////////////////////////////////////
+function itemHistory(){
+ var crumb = getCookie('viewedItems');
+ // avoid splitting the empty string, since that produces another empty string:
+ if (crumb.length){
+  var history = crumb.split(',');
+ } else {
+ // we actually want an empty array:
+  history = [];
+ }
+ return history;
+}
+function addToHistory(item){
+ var history = itemHistory();
+ if (String(lastViewedItem())!=String(item)){
+  history.push(String(item)); // add the item at the end, if it is not already there
+  setHistory(history); // put the revised history into the cookie
+  return true;
+ }
+ return false;
+}
+function setHistory(history=''){
+ if (history==''){
+  // clear the history:
+  var historystring = '';
+ } else {
+  // have we got an array? (in case a string or number is passed)
+  if (typeof(history)=='string' || typeof(history)=='number') history = [history];
+  // form a comma-separated string:
+  var historystring = history.join(',');
+ }
+ // put the history into the cookie: [update this if we set other cookies than viewedItems]
+ document.cookie = `viewedItems=${historystring}; path=/; sameSite=Strict;`;
+}
+function clearHistory(){
+ setHistory();
+}
+function lastViewedItem(){
+ return itemHistory().slice(-1)[0];
+}

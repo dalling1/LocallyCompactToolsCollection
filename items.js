@@ -115,7 +115,7 @@ items.push({
  'link': 'https://github.com/SamSGKing/SRGroups',
  'description': 'SRGroups is a GAP package for self-replicating groups in the sense of Horadam.',
  'image': '',
- 'video': 'http://videos.birs.ca/2021/21w5151/202108191530-Tornier.mp4',
+ 'video': 'https://www.youtube.com/watch?v=eN3IiQui2ew',
  'reference': 'https://nova.newcastle.edu.au/vital/access/manager/Repository/uon:17152',
  'source': 'https://github.com/SamSGKing/SRGroups',
  'tags': 'tool,paper,source,video',

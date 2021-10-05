@@ -53,13 +53,15 @@ function setupItems(){
 
 ///////////////////////////////////////////////////////////////////////////////
 function showItemDetails(hash){
- var n = parseInt(hashtable[hash].replace("item","")); // the hashtable entry is an id like "item8"
- if (n<=items.length){
-  console.log("Clicked item: "+items[n-1].name);
-  showDetails(n-1);
-  // store the items which the user views, so that we can recall them if requested
-  // (or, for example, the user leaves the page and then returns later)
-  addToHistory(hash);
+ if (hashtable[hash]!=undefined){
+  var n = parseInt(hashtable[hash].replace("item","")); // the hashtable entry is an id like "item8"
+  if (n<=items.length){
+   console.log("Clicked item: "+items[n-1].name);
+   showDetails(n-1);
+   // store the items which the user views, so that we can recall them if requested
+   // (or, for example, the user leaves the page and then returns later)
+   addToHistory(hash);
+  }
  } else {
   // no details for this item
   console.log("Clicked item "+n+" (no details available)");

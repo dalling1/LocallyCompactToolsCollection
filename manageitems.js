@@ -55,18 +55,18 @@ function setupItems(){
 function showItemDetails(hash){
  if (hashtable[hash]!=undefined){
   var n = parseInt(hashtable[hash].replace("item","")); // the hashtable entry is an id like "item8"
-  if (n<=items.length){
-   console.log("Clicked item: "+items[n-1].name);
-   showDetails(n-1);
-   // store the items which the user views, so that we can recall them if requested
-   // (or, for example, the user leaves the page and then returns later)
-   addToHistory(hash);
-  }
+  console.log("Clicked item: "+items[n-1].name);
+  showDetails(n-1);
+  // store the items which the user views, so that we can recall them if requested
+  // (or, for example, the user leaves the page and then returns later)
+  addToHistory(hash);
+  return true;
  } else {
   // no details for this item
-  console.log("Clicked item "+n+" (no details available)");
+  console.log("Clicked item "+n+" (no such item)");
   clearDetails();
   // nothing to add to the history
+  return false;
  }
 }
 
@@ -136,7 +136,9 @@ function toggleTag(tag=''){
 ///////////////////////////////////////////////////////////////////////////////
 function clearDetails(){
  var detailsDiv = document.getElementById("detailscontent");
- detailsDiv.innerHTML = '';
+ detailsDiv.innerHTML = `     <p>Click on an item, or drag it into this box, to see its details.
+     <span lang="jp" class="hidden">アイテムをクリックするか、このボックスにドラッグして詳細を表示します。</span></p>
+`;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -296,7 +298,11 @@ function addToHistory(item){
  var history = itemHistory();
  if (String(lastViewedItem())!=String(item)){
   history.push(String(item)); // add the item at the end, if it is not already there
-  setHistory(history); // put the revised history into the cookie
+  // make sure the history does not get too long (100 item limit)
+  var maxHistoryLength = 100;
+  while (history.length>maxHistoryLength) history.shift() // remove oldest entries
+  // put the revised history into the cookie
+  setHistory(history);
   return true;
  }
  return false;

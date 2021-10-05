@@ -63,7 +63,7 @@ function showItemDetails(id){
 
 ///////////////////////////////////////////////////////////////////////////////
 function showDetails(n){
- var detailsDiv = document.getElementById("details");
+ var detailsDiv = document.getElementById("detailscontent");
  var detailsText = `<h2>${items[n].name}</h2>
 `+makeLinks('creator',items[n].creator)+`
 `+makeLinks('webpage',items[n].link)+`
@@ -124,7 +124,7 @@ function toggleTag(tag=''){
 
 ///////////////////////////////////////////////////////////////////////////////
 function clearDetails(){
- var detailsDiv = document.getElementById("details");
+ var detailsDiv = document.getElementById("detailscontent");
  detailsDiv.innerHTML = '';
 }
 

@@ -107,6 +107,10 @@
     background-color: #fafafa;
     top: 10px;
    }
+   #detailscontent {
+    height: 100%;
+    position: relative;
+   }
    #details h2 {
     margin: 5px 0;
    }
@@ -223,6 +227,33 @@
     transition: all 0.2s ease;
    }
 
+   /* hide some things during printing */
+   @media print {
+    #controls,
+    #lang
+    {
+     display: none;
+    }
+    .heading {
+     width: 100%;
+     font-size: 14px;
+     margin-bottom: 10px;
+    }
+    #wrapper {
+     flex-direction: column-reverse;
+    }
+    #catalogue,
+    #details
+    {
+     width: 100%;
+     height: auto;
+    }
+    #details {
+     background-color: #fff;
+     border: 2px solid #999;
+     margin-bottom: 20px;
+    }
+   }
   </style>
  </head>
  <body onload="setupItems();">
@@ -264,8 +295,10 @@
    </div>
 
    <div id="details" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <p>Click on an item, or drag it into this box, to see its details.
-    <span lang="jp" class="hidden">アイテムをクリックするか、このボックスにドラッグして詳細を表示します。</span></p>
+    <div id="detailscontent">
+     <p>Click on an item, or drag it into this box, to see its details.
+     <span lang="jp" class="hidden">アイテムをクリックするか、このボックスにドラッグして詳細を表示します。</span></p>
+    </div>
    </div>
 
   </div>

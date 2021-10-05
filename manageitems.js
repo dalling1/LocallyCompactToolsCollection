@@ -311,3 +311,67 @@ function clearHistory(){
 function lastViewedItem(){
  return itemHistory().slice(-1)[0];
 }
+
+///////////////////////////////////////////////////////////////////////////////
+function generateItem(){
+ var formname = document.getElementById("formname").value;
+ var formcreator = document.getElementById("formcreator").value;
+ var formlink = document.getElementById("formlink").value;
+ var formdescription = document.getElementById("formdescription").value;
+ var formimage = document.getElementById("formimage").value;
+ var formvideo = document.getElementById("formvideo").value;
+ var formreference = document.getElementById("formreference").value;
+ var formsource = document.getElementById("formsource").value;
+
+ // check the tags
+ var tagimage = document.getElementById("formtagimage").checked;
+ var tagpaper = document.getElementById("formtagpaper").checked;
+ var tagsource = document.getElementById("formtagsource").checked;
+ var tagtool = document.getElementById("formtagtool").checked;
+ var tagvideo = document.getElementById("formtagvideo").checked;
+ var tagwebpage = document.getElementById("formtagwebpage").checked;
+
+ // create a tags string
+ var tagchoices = [];
+ if (tagimage) tagchoices.push('image');
+ if (tagpaper) tagchoices.push('paper');
+ if (tagsource) tagchoices.push('source');
+ if (tagtool) tagchoices.push('tool');
+ if (tagvideo) tagchoices.push('video');
+ if (tagwebpage) tagchoices.push('webpage');
+
+ var tags = tagchoices.join(',');
+
+ var newitem = `{
+ 'name': '${formname}',
+ 'creator': '${formcreator}',
+ 'link': '${formlink}',
+ 'description': '${formdescription}',
+ 'image': '${formimage}',
+ 'video': '${formvideo}',
+ 'reference': '${formreference}',
+ 'source': '${formsource}',
+ 'tags': '${tags}',
+}`;
+ // escape back-slashes (they are preserved on the form output, but need escaping for entering into items.js)
+ newitem = newitem.replace('\\','\\\\');
+
+ // show the output on the page
+ document.getElementById("formoutput").innerHTML = newitem;
+ document.getElementById("formoutput").rows = 12;
+
+ // and set it up for copying
+ document.getElementById("formoutput").setAttribute("data-copy-text",newitem);
+}
+
+async function copyOutput(){
+ // Modified from https://www.jasongaylord.com/blog/2020/05/21/copy-to-clipboard-using-javascript
+ if (!navigator.clipboard) return;
+ try {
+  var copy_value = document.getElementById("formoutput").getAttribute("data-copy-text");
+  await navigator.clipboard.writeText(copy_value);
+  alert('Text copied successfully');
+ } catch (error){
+  console.error("copy failed", error);
+ }
+}

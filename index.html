@@ -109,7 +109,9 @@
    }
    #detailscontent {
     height: 100%;
-    position: relative;
+    position: absolute;
+    top: 15px; /* #details padding top */
+    z-index: 10;
    }
    #details h2 {
     margin: 5px 0;
@@ -120,6 +122,25 @@
    #details .tagicon {
     vertical-align: middle;
     margin-right: 5px;
+   }
+   #details .addicon {
+    text-align: right;
+    position: absolute;
+    right: 1px;
+    top: 4px;
+    cursor: pointer;
+    background-color: #fafafa;
+    border-radius: 3px;
+    z-index: 100;
+   }
+   #details .addicon img {
+    opacity: 0.25;
+    width: 32px;
+    transition: all 0.2s ease;
+    padding: 0 3px;
+   }
+   #details .addicon:hover img {
+    opacity: 1;
    }
    #catalogue .itemnumber {
     padding: 0;
@@ -226,11 +247,87 @@
     background-color: initial;
     transition: all 0.2s ease;
    }
+   #submissionform {
+    width: 100%;
+    min-height: 100%;
+    background-color: #444;
+    color: #fff;
+    border-radius: 3px;
+    margin: 2px;
+    padding: 15px 15px;
+    box-sizing: border-box;
+    transition: all 1s ease;
+    font-size: 16px;
+   }
+   #submissionform.hideform {
+    opacity: 0;
+    height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #fff;
+    transition: all 1s ease;
+   }
+   #submissionform a {
+    color: #c9c9f9;
+   }
+   #submissionform p {
+    margin: 5px;
+   }
+   #submissionform input[type=text] {
+    width: 80%;
+    margin: 6px 0;
+   }
+   #submissionform input[type=text]::placeholder {
+    color: #777;
+   }
+   #submissionform input[type=checkbox] {
+    display: none;
+   }
+   #submissionform label {
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 5px;
+    transition: all 0.1s ease;
+   }
+   #submissionform input[type=checkbox]:checked + label {
+    background-color: #c9f9c9;
+    transition: all 0.1s ease;
+   }
+   #submissionform input[type=checkbox]:checked + label img {
+    filter: none;
+   }
+   #submissionform .tagicon {
+    filter: invert();
+   }
+   #submissionform #formname {
+    font-size: 1.5em;
+   }
+   #submissionform #formdescription {
+    margin: 10px auto;
+    width: 90%;
+   }
+   #submissionform #generatebutton {
+   }
+   #submissionform #formoutput {
+    margin: 10px auto;
+    width: 90%;
+    white-space: pre-wrap;
+   }
+   #detailscontent.showform {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 1s ease;
+   }
 
    /* hide some things during printing */
    @media print {
     #controls,
-    #lang
+    #lang,
+    .addicon,
+    #submissionform
     {
      display: none;
     }
@@ -295,6 +392,33 @@
    </div>
 
    <div id="details" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="addicon"><img src="icons/file-plus.svg" id="formicon" alt="Propose a new item" title="Propose a new item" onclick="showSubForm()"></div>
+    <div id="submissionform" class="hideform">
+     <p style="margin-bottom: 20px;">Submissions: fill out this form and click "generate", then email the resulting code to <tt>contact@zerodimensional.group</tt>, enter it
+     as a new issue on this project's <a href="https://github.com/dalling1/LocallyCompactToolsCollection/labels/newitem">GitHub issues page</a> or use
+     it as a basis for a <a href="https://github.com/dalling1/LocallyCompactToolsCollection/pulls">pull request</a>.</p>
+ <p><img class="tagicon" src="icons/edit.svg" alt="name" title="name"><input id="formname" type="text" placeholder="Item name"/></p>
+ <p><img class="tagicon" src="icons/user.svg" alt="creator" title="creator"><input id="formcreator" type="text" placeholder="Creators (separate with commas)"/></p>
+ <p><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"><input id="formlink" type="text" placeholder="Webpage links (separate with commas)"/></p>
+ <p><img class="tagicon" src="icons/image.svg" alt="image" title="image"><input id="formimage" type="text" placeholder="Image URLs (separate with commas)"/></p>
+ <p><img class="tagicon" src="icons/video.svg" alt="video" title="video"><input id="formvideo" type="text" placeholder="Video URLs (separate with commas)"/></p>
+ <p><img class="tagicon" src="icons/file-text.svg" alt="paper" title="paper"><input id="formreference" type="text" placeholder="Paper URLs (separate with commas)"/></p>
+ <p><img class="tagicon" src="icons/code.svg" alt="source" title="source"><input id="formsource" type="text" placeholder="Source code URLs (separate with commas)"/></p>
+ <p style="margin-top:12px;">Tags:
+  <input type="checkbox" id="formtagimage"/><label for="formtagimage"><img class="tagicon" src="icons/image.svg" alt="image" title="image"></label>
+  <input type="checkbox" id="formtagpaper"/><label for="formtagpaper"><img class="tagicon" src="icons/file-text.svg" alt="paper" title="paper"></label>
+  <input type="checkbox" id="formtagsource"/><label for="formtagsource"><img class="tagicon" src="icons/code.svg" alt="source" title="source"></label>
+  <input type="checkbox" id="formtagtool"/><label for="formtagtool"><img class="tagicon" src="icons/tool.svg" alt="tool" title="tool"></label>
+  <input type="checkbox" id="formtagvideo"/><label for="formtagvideo"><img class="tagicon" src="icons/video.svg" alt="video" title="video"></label>
+  <input type="checkbox" id="formtagwebpage"/><label for="formtagwebpage"><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"></label>
+ </p>
+ <p><textarea rows="8" id="formdescription" placeholder="Enter a description of this item"></textarea></p>
+ <button id="generatebutton" onclick="generateItem()">Generate</button>
+ <button id="copyoutput" onclick="copyOutput()">Copy output</button>
+ <p><textarea rows="1" id="formoutput" placeholder="Item code will be printed here when you click 'Generate'." readonly="readonly"></textarea></p>
+ <p style="font-size:0.7em;">Note that back-slashes will be escaped, appearing as a double back-slash.</p>
+
+    </div>
     <div id="detailscontent">
      <p>Click on an item, or drag it into this box, to see its details.
      <span lang="jp" class="hidden">アイテムをクリックするか、このボックスにドラッグして詳細を表示します。</span></p>
@@ -312,6 +436,18 @@
      document.getElementById('wrapper').classList.remove('large');
      document.getElementById('wrapper').classList.add(sz);
     }
+   }
+   function showSubForm(){
+    document.getElementById('detailscontent').classList.add('showform');
+    document.getElementById('submissionform').classList.remove('hideform');
+    document.getElementById('formicon').src='icons/file-minus.svg';
+    document.getElementById('formicon').onclick=function(){hideSubForm()};
+   }
+   function hideSubForm(){
+    document.getElementById('submissionform').classList.add('hideform');
+    document.getElementById('formicon').src='icons/file-plus.svg';
+    document.getElementById('formicon').onclick=function(){showSubForm()};
+    document.getElementById('detailscontent').classList.remove('showform');
    }
   </script>
 

@@ -4,6 +4,8 @@ function setupItems(){
  items.sort(function(a,b){
   return a.name.localeCompare(b.name);
  });
+ // add a hash code to identify items; use only the name, for now: if this changes, the hash will change
+ items.map(x=>x.hash=(x.name).hashCode());
 
  // add the items to the webpage
  var catalogueDiv = document.getElementById("catalogue");
@@ -15,6 +17,7 @@ function setupItems(){
   newitem.className = 'item';
   newitem.id = `item${i+1}`;
   newitem.draggable = true;
+  newitem.setAttribute('data-hash',items[i].hash);
   newitem.ondragstart = function(){dragStart(event)};
   newitem.innerHTML = `\n <p class="itemnumber">Item ${i+1}</p>
  <p class="itemnumber hidden" lang="jp" >アイテム ${i+1}</p>
@@ -24,10 +27,14 @@ function setupItems(){
    newitem.innerHTML += ` <div class="iconholder">`+showIcons(items[i].tags)+`</div>\n`;
   }
   // set the on-click behaviour to show the item details
-  newitem.onclick = function(){showItemDetails(this.id)};
+  newitem.onclick = function(){showItemDetails(this.getAttribute('data-hash'))};
   // append it to the catalogue on the page
   catalogueDiv.appendChild(newitem);
+  // build a look-up table to relate the hashes with the DOM elements' IDs
+  if (typeof(hashtable)=='undefined') hashtable = []; // create the global variable if it does not exist
+  hashtable[items[i].hash] = newitem.id;
  }
+
 
  // typeset the catalogue content
  if (typeof(MathJax)) MathJax.typesetPromise([catalogueDiv]);
@@ -45,14 +52,14 @@ function setupItems(){
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-function showItemDetails(id){
- var n = parseInt(id.replace("item",""));
+function showItemDetails(hash){
+ var n = parseInt(hashtable[hash].replace("item","")); // the hashtable entry is an id like "item8"
  if (n<=items.length){
   console.log("Clicked item: "+items[n-1].name);
   showDetails(n-1);
   // store the items which the user views, so that we can recall them if requested
   // (or, for example, the user leaves the page and then returns later)
-  addToHistory(n);
+  addToHistory(hash);
  } else {
   // no details for this item
   console.log("Clicked item "+n+" (no details available)");
@@ -242,7 +249,7 @@ function runSearch(){
 ///////////////////////////////////////////////////////////////////////////////
 // the usual drag functions
 function dragStart(event) {
- event.dataTransfer.setData("Text", event.target.id.replace("item",""));
+ event.dataTransfer.setData("Text", event.target.getAttribute("data-hash"));
 }
 function allowDrop(event) {
  event.preventDefault();
@@ -375,3 +382,16 @@ async function copyOutput(){
   console.error("copy failed", error);
  }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// hash function for strings, by esmiralha: https://stackoverflow.com/a/7616484
+String.prototype.hashCode = function() {
+  var hash = 0, i, chr;
+  if (this.length === 0) return hash;
+  for (i = 0; i < this.length; i++) {
+    chr   = this.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};

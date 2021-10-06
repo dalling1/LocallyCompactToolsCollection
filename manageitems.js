@@ -53,10 +53,16 @@ function setupItems(){
 
 ///////////////////////////////////////////////////////////////////////////////
 function showItemDetails(hash){
+ // clear any extant hightlighting of the catalogue items
+ clearHighlights();
+ // look for this item in the hashtable
  if (hashtable[hash]!=undefined){
   var n = parseInt(hashtable[hash].replace("item","")); // the hashtable entry is an id like "item8"
   console.log("Showing details: "+items[n-1].name);
   showDetails(n-1);
+  // highlight the item whose details are being shown
+  document.getElementById(hashtable[hash]).classList.add("showing");
+
   // store the items which the user views, so that we can recall them if requested
   // (or, for example, the user leaves the page and then returns later)
   addToHistory(hash);
@@ -139,6 +145,7 @@ function clearDetails(){
  detailsDiv.innerHTML = `     <p>Click on an item, or drag it into this box, to see its details.
      <span lang="jp" class="hidden">アイテムをクリックするか、このボックスにドラッグして詳細を表示します。</span></p>
 `;
+ clearHighlights();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -456,3 +463,9 @@ String.prototype.hashCode = function() {
   }
   return hash;
 };
+
+///////////////////////////////////////////////////////////////////////////////
+function clearHighlights(){
+ var olditems = document.getElementsByClassName("showing");
+ for (var i=olditems.length;i>0;i--) olditems[i-1].classList.remove("showing");
+}

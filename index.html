@@ -305,13 +305,17 @@
     font-size: 1.5em;
    }
    #submissionform #formdescription {
-    margin: 10px auto;
+    margin: 10px 0;
     width: 90%;
    }
    #submissionform #generatebutton {
    }
+   #submissionform #formbuttons {
+    width: 90%;
+    margin: 5px;
+   }
    #submissionform #formoutput {
-    margin: 10px auto;
+    margin: 10px 0;
     width: 90%;
     white-space: pre-wrap;
    }
@@ -420,8 +424,11 @@
       <input type="checkbox" id="formtagwebpage"/><label for="formtagwebpage"><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"></label>
      </p>
      <p><textarea rows="8" id="formdescription" placeholder="Enter a description of this item"></textarea></p>
-     <button id="generatebutton" onclick="generateItem()">Generate</button>
-     <button id="copyoutput" onclick="copyOutput()">Copy output</button>
+     <div id="formbuttons">
+      <button id="generatebutton" onclick="generateItem()">Generate</button>
+      <button id="copyoutput" onclick="copyOutput()" disabled="disabled">Copy output</button>
+      <button id="clearform" onclick="clearForm()" style="float:right;">Clear form</button>
+     </div>
      <p><textarea rows="1" id="formoutput" placeholder="Item code will be printed here when you click 'Generate'." readonly="readonly"></textarea></p>
      <p style="font-size:0.7em;">Note that back-slashes will be escaped, appearing as a double back-slash.</p>
     </div>
@@ -454,6 +461,25 @@
     document.getElementById('formicon').src='icons/file-plus.svg';
     document.getElementById('formicon').onclick=function(){showSubForm()};
     document.getElementById('detailscontent').classList.remove('showform');
+   }
+   function clearForm(){
+    document.getElementById("formname").value = "";
+    document.getElementById("formcreator").value = "";
+    document.getElementById("formlink").value = "";
+    document.getElementById("formdescription").value = "";
+    document.getElementById("formimage").value = "";
+    document.getElementById("formvideo").value = "";
+    document.getElementById("formreference").value = "";
+    document.getElementById("formsource").value = "";
+    document.getElementById("formtagimage").checked = false;
+    document.getElementById("formtagpaper").checked = false;
+    document.getElementById("formtagsource").checked = false;
+    document.getElementById("formtagtool").checked = false;
+    document.getElementById("formtagvideo").checked = false;
+    document.getElementById("formtagwebpage").checked = false;
+    document.getElementById("copyoutput").setAttribute("disabled","disabled");
+    document.getElementById("formoutput").setAttribute("data-copy-text","");
+    document.getElementById("formoutput").innerHTML = "";
    }
   </script>
 

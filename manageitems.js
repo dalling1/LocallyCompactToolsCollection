@@ -426,8 +426,10 @@ function generateItem(){
  document.getElementById("formoutput").innerHTML = newitem;
  document.getElementById("formoutput").rows = 12;
 
- // and set it up for copying
+ // set it up for copying
  document.getElementById("formoutput").setAttribute("data-copy-text",newitem);
+ // and enable the copy button
+ document.getElementById("copyoutput").removeAttribute("disabled");
 }
 
 async function copyOutput(){

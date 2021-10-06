@@ -41,8 +41,8 @@ function setupItems(){
 
  // test whether there is already a cookie, in which the user's item-viewing history
  // might be stored
- if (itemHistory().length){
-  showItemDetails(lastViewedItem());
+ if (getHistory().length){
+  showItemDetails(currentItem());
  } else {
   // if not, set it so that the page can remember which items have been displayed;
   // this is particularly useful if the user follows a link on an item and then
@@ -55,7 +55,7 @@ function setupItems(){
 function showItemDetails(hash){
  if (hashtable[hash]!=undefined){
   var n = parseInt(hashtable[hash].replace("item","")); // the hashtable entry is an id like "item8"
-  console.log("Clicked item: "+items[n-1].name);
+  console.log("Showing details: "+items[n-1].name);
   showDetails(n-1);
   // store the items which the user views, so that we can recall them if requested
   // (or, for example, the user leaves the page and then returns later)
@@ -63,7 +63,7 @@ function showItemDetails(hash){
   return true;
  } else {
   // no details for this item
-  console.log("Clicked item "+n+" (no such item)");
+  console.log("Showing details: "+n+" (no such item)");
   clearDetails();
   // nothing to add to the history
   return false;
@@ -283,7 +283,7 @@ function getCookie(cname) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-function itemHistory(){
+function getHistory(){
  var crumb = getCookie('viewedItems');
  // avoid splitting the empty string, since that produces another empty string:
  if (crumb.length){
@@ -294,37 +294,88 @@ function itemHistory(){
  }
  return history;
 }
-function addToHistory(item){
- var history = itemHistory();
- if (String(lastViewedItem())!=String(item)){
-  history.push(String(item)); // add the item at the end, if it is not already there
-  // make sure the history does not get too long (100 item limit)
+///////////////////////////////////////////////////////////////////////////////
+function addToHistory(hash){
+ if (hash != currentItem()){
+  var history = getHistory();
+  // insert the new item at the current position (plus one)
+  // so first, remove any later history:
+  history.splice(getHistoryPosition()+1);
+  // and then add the new item to the end
+  history.push(String(hash)); // add the item at the end, if it is not already there
+  // and keep the history position up to date
+  incPosition();
+  // also make sure the history does not get too long (100 item limit)
   var maxHistoryLength = 100;
   while (history.length>maxHistoryLength) history.shift() // remove oldest entries
   // put the revised history into the cookie
   setHistory(history);
   return true;
+ } else {
+  return false;
  }
- return false;
 }
+///////////////////////////////////////////////////////////////////////////////
 function setHistory(history=''){
  if (history==''){
   // clear the history:
   var historystring = '';
+  var historyposition = -1;
  } else {
-  // have we got an array? (in case a string or number is passed)
+  // make sure we have an array (in case a string or number is passed)
   if (typeof(history)=='string' || typeof(history)=='number') history = [history];
   // form a comma-separated string:
   var historystring = history.join(',');
+  var historyposition = history.length-1; // set the last item in the list to be the current item
  }
  // put the history into the cookie: [update this if we set other cookies than viewedItems]
- document.cookie = `viewedItems=${historystring}; path=/; sameSite=Strict;`;
+ document.cookie = `viewedItems=${historystring}; sameSite=Strict; path=/;`;
+ document.cookie = `historyPosition=${historyposition}; sameSite=Strict; path=/;`;
 }
+///////////////////////////////////////////////////////////////////////////////
 function clearHistory(){
  setHistory();
+ clearDetails();
 }
-function lastViewedItem(){
- return itemHistory().slice(-1)[0];
+///////////////////////////////////////////////////////////////////////////////
+function getHistoryPosition(){
+ return parseInt(getCookie('historyPosition'));
+}
+///////////////////////////////////////////////////////////////////////////////
+function currentItem(){
+ var history = getHistory();
+ var pos = getHistoryPosition();
+ if (pos>-1){
+  return history[pos];
+ } else {
+  return '';
+ }
+}
+///////////////////////////////////////////////////////////////////////////////
+function showCurrentItem(){
+ showItemDetails(currentItem());
+}
+///////////////////////////////////////////////////////////////////////////////
+function decPosition(){
+ var pos = getHistoryPosition();
+ var history = getHistory();
+ if (history.length==0){
+  pos = -1;
+ } else if (pos>0){
+  pos = pos-1;
+ }
+ document.cookie = `historyPosition=${pos}; sameSite=Strict; path=/;`;
+}
+///////////////////////////////////////////////////////////////////////////////
+function incPosition(){
+ var pos = getHistoryPosition();
+ var history = getHistory();
+ if (history.length==0){
+  pos = -1;
+ } else if (pos<(history.length-1)){
+  pos = pos+1;
+ }
+ document.cookie = `historyPosition=${pos}; sameSite=Strict; path=/;`;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

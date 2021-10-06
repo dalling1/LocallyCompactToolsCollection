@@ -105,7 +105,7 @@
     height: 65vh;
     box-sizing: border-box;
     background-color: #fafafa;
-    top: 10px;
+    top: 42px;
    }
    #detailscontent {
     height: 100%;
@@ -123,23 +123,23 @@
     vertical-align: middle;
     margin-right: 5px;
    }
-   #details .addicon {
+   #details .detailcontrols {
     text-align: right;
     position: absolute;
     right: 1px;
-    top: 4px;
+    top: -22px;
     cursor: pointer;
     background-color: #fafafa;
     border-radius: 3px;
     z-index: 100;
    }
-   #details .addicon img {
+   #details .detailcontrols img {
     opacity: 0.25;
     width: 32px;
     transition: all 0.2s ease;
     padding: 0 3px;
    }
-   #details .addicon:hover img {
+   #details .detailcontrols img:hover {
     opacity: 1;
    }
    #catalogue .itemnumber {
@@ -326,7 +326,7 @@
    @media print {
     #controls,
     #lang,
-    .addicon,
+    .detailcontrols,
     #submissionform
     {
      display: none;
@@ -392,7 +392,12 @@
    </div>
 
    <div id="details" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <div class="addicon"><img src="icons/file-plus.svg" id="formicon" alt="Propose a new item" title="Propose a new item" onclick="showSubForm()"></div>
+    <div class="detailcontrols">
+     <img src="icons/arrow-left.svg" id="lefticon" alt="Show previous item in history" title="Show previous item in history" onclick="decPosition();showCurrentItem();">
+     <img src="icons/x.svg" id="clearicon" alt="Clear history" title="Clear history" onclick="clearHistory()">
+     <img src="icons/arrow-right.svg" id="righticon" alt="Show next item in history" title="Show next item in history" onclick="incPosition();showCurrentItem();">
+     <img src="icons/file-plus.svg" id="formicon" alt="Propose a new item" title="Propose a new item" onclick="showSubForm()">
+    </div>
     <div id="submissionform" class="hideform">
      <p style="margin-bottom: 20px;">Submissions: fill out this form and click "generate", then email the resulting code to <tt>contact@zerodimensional.group</tt>, enter it
      as a new issue on this project's <a href="https://github.com/dalling1/LocallyCompactToolsCollection/labels/newitem">GitHub issues page</a> or use

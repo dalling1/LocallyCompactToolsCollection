@@ -399,38 +399,39 @@
      <img src="icons/file-plus.svg" id="formicon" alt="Propose a new item" title="Propose a new item" onclick="showSubForm()">
     </div>
     <div id="submissionform" class="hideform">
-     <p style="margin-bottom: 20px;">Submissions: fill out this form and click "generate", then email the resulting code to <tt>contact@zerodimensional.group</tt>, enter it
-     as a new issue on this project's <a href="https://github.com/dalling1/LocallyCompactToolsCollection/labels/newitem">GitHub issues page</a> or use
-     it as a basis for a <a href="https://github.com/dalling1/LocallyCompactToolsCollection/pulls">pull request</a>.</p>
- <p><img class="tagicon" src="icons/edit.svg" alt="name" title="name"><input id="formname" type="text" placeholder="Item name"/></p>
- <p><img class="tagicon" src="icons/user.svg" alt="creator" title="creator"><input id="formcreator" type="text" placeholder="Creators (separate with commas)"/></p>
- <p><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"><input id="formlink" type="text" placeholder="Webpage links (separate with commas)"/></p>
- <p><img class="tagicon" src="icons/image.svg" alt="image" title="image"><input id="formimage" type="text" placeholder="Image URLs (separate with commas)"/></p>
- <p><img class="tagicon" src="icons/video.svg" alt="video" title="video"><input id="formvideo" type="text" placeholder="Video URLs (separate with commas)"/></p>
- <p><img class="tagicon" src="icons/file-text.svg" alt="paper" title="paper"><input id="formreference" type="text" placeholder="Paper URLs (separate with commas)"/></p>
- <p><img class="tagicon" src="icons/code.svg" alt="source" title="source"><input id="formsource" type="text" placeholder="Source code URLs (separate with commas)"/></p>
- <p style="margin-top:12px;">Tags:
-  <input type="checkbox" id="formtagimage"/><label for="formtagimage"><img class="tagicon" src="icons/image.svg" alt="image" title="image"></label>
-  <input type="checkbox" id="formtagpaper"/><label for="formtagpaper"><img class="tagicon" src="icons/file-text.svg" alt="paper" title="paper"></label>
-  <input type="checkbox" id="formtagsource"/><label for="formtagsource"><img class="tagicon" src="icons/code.svg" alt="source" title="source"></label>
-  <input type="checkbox" id="formtagtool"/><label for="formtagtool"><img class="tagicon" src="icons/tool.svg" alt="tool" title="tool"></label>
-  <input type="checkbox" id="formtagvideo"/><label for="formtagvideo"><img class="tagicon" src="icons/video.svg" alt="video" title="video"></label>
-  <input type="checkbox" id="formtagwebpage"/><label for="formtagwebpage"><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"></label>
- </p>
- <p><textarea rows="8" id="formdescription" placeholder="Enter a description of this item"></textarea></p>
- <button id="generatebutton" onclick="generateItem()">Generate</button>
- <button id="copyoutput" onclick="copyOutput()">Copy output</button>
- <p><textarea rows="1" id="formoutput" placeholder="Item code will be printed here when you click 'Generate'." readonly="readonly"></textarea></p>
- <p style="font-size:0.7em;">Note that back-slashes will be escaped, appearing as a double back-slash.</p>
-
+     <p style="margin-bottom: 20px;">
+      Submissions: fill out this form and click "generate", then email the resulting code to <tt>contact@zerodimensional.group</tt>, enter it
+      as a new issue on this project's <a href="https://github.com/dalling1/LocallyCompactToolsCollection/labels/newitem">GitHub issues page</a> or use
+      it as a basis for a <a href="https://github.com/dalling1/LocallyCompactToolsCollection/pulls">pull request</a>.
+     </p>
+     <p><img class="tagicon" src="icons/edit.svg" alt="name" title="name"><input id="formname" type="text" placeholder="Item name"/></p>
+     <p><img class="tagicon" src="icons/user.svg" alt="creator" title="creator"><input id="formcreator" type="text" placeholder="Creators (separate with commas)"/></p>
+     <p><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"><input id="formlink" type="text" placeholder="Webpage links (separate with commas)"/></p>
+     <p><img class="tagicon" src="icons/image.svg" alt="image" title="image"><input id="formimage" type="text" placeholder="Image URLs (separate with commas)"/></p>
+     <p><img class="tagicon" src="icons/video.svg" alt="video" title="video"><input id="formvideo" type="text" placeholder="Video URLs (separate with commas)"/></p>
+     <p><img class="tagicon" src="icons/file-text.svg" alt="paper" title="paper"><input id="formreference" type="text" placeholder="Paper URLs (separate with commas)"/></p>
+     <p><img class="tagicon" src="icons/code.svg" alt="source" title="source"><input id="formsource" type="text" placeholder="Source code URLs (separate with commas)"/></p>
+     <p style="margin-top:12px;">Tags:
+      <input type="checkbox" id="formtagimage"/><label for="formtagimage"><img class="tagicon" src="icons/image.svg" alt="image" title="image"></label>
+      <input type="checkbox" id="formtagpaper"/><label for="formtagpaper"><img class="tagicon" src="icons/file-text.svg" alt="paper" title="paper"></label>
+      <input type="checkbox" id="formtagsource"/><label for="formtagsource"><img class="tagicon" src="icons/code.svg" alt="source" title="source"></label>
+      <input type="checkbox" id="formtagtool"/><label for="formtagtool"><img class="tagicon" src="icons/tool.svg" alt="tool" title="tool"></label>
+      <input type="checkbox" id="formtagvideo"/><label for="formtagvideo"><img class="tagicon" src="icons/video.svg" alt="video" title="video"></label>
+      <input type="checkbox" id="formtagwebpage"/><label for="formtagwebpage"><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"></label>
+     </p>
+     <p><textarea rows="8" id="formdescription" placeholder="Enter a description of this item"></textarea></p>
+     <button id="generatebutton" onclick="generateItem()">Generate</button>
+     <button id="copyoutput" onclick="copyOutput()">Copy output</button>
+     <p><textarea rows="1" id="formoutput" placeholder="Item code will be printed here when you click 'Generate'." readonly="readonly"></textarea></p>
+     <p style="font-size:0.7em;">Note that back-slashes will be escaped, appearing as a double back-slash.</p>
     </div>
     <div id="detailscontent">
      <p>Click on an item, or drag it into this box, to see its details.
      <span lang="jp" class="hidden">アイテムをクリックするか、このボックスにドラッグして詳細を表示します。</span></p>
     </div>
    </div>
-
   </div>
+
   <script src="manageitems.js"></script>
   <script src="items.js"></script>
   <script>

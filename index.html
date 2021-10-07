@@ -12,6 +12,7 @@
    };
   </script>
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
   <style>
    html {
     padding: 0;
@@ -22,6 +23,11 @@
     font-size: 20px;
     padding: 0 10px;
     margin: 0;
+   }
+   svg.feather { /* default colour and size */
+    color: #000;
+    width: 24px;
+    height: 24px;
    }
    .hidden {
     display: none;
@@ -37,14 +43,14 @@
    #controls {
     font-size: 16px;
    }
-   #controls img,
+   #controls svg,
    #controls .control
    {
     vertical-align: bottom;
     cursor: pointer;
     border-radius: 5px;
    }
-   #controls img:hover,
+   #controls svg:hover,
    #controls .control:hover
    {
     background-color: #f9c9c9;
@@ -88,6 +94,10 @@
     border: 1px solid #c77;
     background-color: #f9f9c9;
    }
+   #catalogue .item.showing .iconholder svg {
+    color: #373;
+    transition: color 0.2s ease;
+   }
    #catalogue :lang(jp) {
     font-size: 0.5em;
    }
@@ -98,9 +108,10 @@
     bottom: -4px;
     transition: all 1s ease;
    }
-   #catalogue .iconholder img {
+   #catalogue .iconholder svg {
     width: 16px;
-    transition: all 1s ease;
+    height: 16px;
+    transition: all 1s ease, color 0.2s ease;;
    }
    #details {
     position: sticky;
@@ -126,6 +137,8 @@
    #details .tagicon {
     vertical-align: middle;
     margin-right: 5px;
+    width: 24px;
+    height: 24px;
    }
    #details .detailcontrols {
     text-align: right;
@@ -137,14 +150,18 @@
     border-radius: 3px;
     z-index: 100;
    }
-   #details .detailcontrols img {
+   #details .detailcontrols svg {
     opacity: 0.25;
     width: 32px;
+    height: 32px;
     transition: all 0.2s ease;
     padding: 0 3px;
    }
-   #details .detailcontrols img:hover {
+   #details .detailcontrols svg:hover {
     opacity: 1;
+   }
+   #details .detailcontrols .hideicon {
+    display: none;
    }
    #catalogue .itemnumber {
     padding: 0;
@@ -182,8 +199,9 @@
     height: 110px;
     font-size: 10px;
    }
-   .small #catalogue .item .iconholder img {
+   .small #catalogue .item .iconholder svg {
     width: 12px;
+    height: 12px;
    }
    .small #catalogue .iconholder {
     bottom: 0;
@@ -195,8 +213,9 @@
     height: 190px;
     font-size: 20px;
    }
-   .medium #catalogue .item .iconholder img {
+   .medium #catalogue .item .iconholder svg {
     width: 16px;
+    height: 16px;
    }
    .medium #catalogue .iconholder {
     right: 1px;
@@ -208,8 +227,9 @@
     height: 300px;
     font-size: 28px;
    }
-   .large #catalogue .item .iconholder img {
+   .large #catalogue .item .iconholder svg {
     width: 24px;
+    height: 24px;
    }
    .large #catalogue .iconholder {
     bottom: -4px;
@@ -218,13 +238,13 @@
 
    .small #catalogue .shrink,
    .small #catalogue .shrink .iconholder,
-   .small #catalogue .shrink .iconholder img,
+   .small #catalogue .shrink .iconholder svg,
    .medium #catalogue .shrink,
    .medium #catalogue .shrink .iconholder,
-   .medium #catalogue .shrink .iconholder img,
+   .medium #catalogue .shrink .iconholder svg,
    .large #catalogue .shrink,
    .large #catalogue .shrink .iconholder,
-   .large #catalogue .shrink .iconholder img
+   .large #catalogue .shrink .iconholder svg
    {
     width: 0;
     height: 0;
@@ -242,11 +262,11 @@
     right: 2px;
     top: 3px;
    }
-   #clearsearch img {
+   #clearsearch svg {
     opacity: 0.25;
     transition: all 0.2s ease;
    }
-   #clearsearch img:hover {
+   #clearsearch svg:hover {
     opacity: 0.5;
     background-color: initial;
     transition: all 0.2s ease;
@@ -299,7 +319,7 @@
     background-color: #c9f9c9;
     transition: all 0.1s ease;
    }
-   #submissionform input[type=checkbox]:checked + label img {
+   #submissionform input[type=checkbox]:checked + label svg {
     filter: none;
    }
    #submissionform .tagicon {
@@ -361,7 +381,7 @@
    }
   </style>
  </head>
- <body onload="setupItems();">
+ <body onload="setupItems();feather.replace();">
   <div class="heading">
    <h1>Computational and Visualisation Tools for Locally Compact Groups Acting on Discrete Structures</h1>
    <p>A collection of on-line resources.  Click an item to see its details, or drag it into the right-hand area. Search terms can be separated by commas to perform an "or" search.
@@ -370,21 +390,21 @@
 
   <div id="controls">
    Item size:
-   <img src="icons/trello.svg" onclick="catSize('small');"  width="18px" style="margin-bottom:2px">
-   <img src="icons/trello.svg" onclick="catSize('medium');" width="26px" style="margin-bottom:1px">
-   <img src="icons/trello.svg" onclick="catSize('large');"  width="34px">
+   <img data-feather="trello" onclick="catSize('small');"  style="width:18px; height:18px; margin-bottom:1px;">
+   <img data-feather="trello" onclick="catSize('medium');" style="width:26px; height:26px; margin-bottom:0;">
+   <img data-feather="trello" onclick="catSize('large');"  style="width:34px; height:34px; margin-bottom:-1px;">
    Filter by tag:
-   <img onclick="toggleTag('image')" src="icons/image.svg" alt="image" title="image">
-   <img onclick="toggleTag('paper')" src="icons/file-text.svg" alt="paper" title="paper">
-   <img onclick="toggleTag('source')" src="icons/code.svg" alt="source" title="source">
-   <img onclick="toggleTag('tool')" src="icons/tool.svg" alt="tool" title="tool">
-   <img onclick="toggleTag('video')" src="icons/video.svg" alt="video" title="video">
-   <img onclick="toggleTag('webpage')" src="icons/layout.svg" alt="webpage" title="webpage">
+   <img onclick="toggleTag('image')" data-feather="image" alt="image" title="image">
+   <img onclick="toggleTag('paper')" data-feather="file-text" alt="paper" title="paper">
+   <img onclick="toggleTag('source')" data-feather="code" alt="source" title="source">
+   <img onclick="toggleTag('tool')" data-feather="tool" alt="tool" title="tool">
+   <img onclick="toggleTag('video')" data-feather="video" alt="video" title="video">
+   <img onclick="toggleTag('webpage')" data-feather="layout" alt="webpage" title="webpage">
    <span class="control" onclick="toggleTag()">SHOW ALL</span>
-   <img src="icons/search.svg" alt="search" title="search" id="searchicon" onclick="document.getElementById('search').focus()">
+   <img data-feather="search" alt="search" title="search" id="searchicon" onclick="document.getElementById('search').focus()">
    <div class="searchwithclear">
     <input type="search" id="search" placeholder="search" oninput="runSearch()" />
-    <span id="clearsearch" onclick="document.getElementById('search').value=''; document.getElementById('search').focus(); runSearch();"><img src="icons/x-circle.svg" alt="clear" title="clear"></span>
+    <span id="clearsearch" onclick="document.getElementById('search').value=''; document.getElementById('search').focus(); runSearch();"><img data-feather="x-circle" alt="clear" title="clear"></span>
    </div>
    <input type="checkbox" id="searchcase" checked="checked" onchange="runSearch()" /> <span title="Do a case-insensitive search">ignore case</span>
    <input type="checkbox" id="searchdetail" checked="checked" onchange="runSearch()" /> <span title="Search item details, not just the title">search details</span>
@@ -401,10 +421,11 @@
 
    <div id="details" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class="detailcontrols">
-     <img src="icons/arrow-left.svg" id="lefticon" alt="Show previous item in history" title="Show previous item in history" onclick="decPosition();showCurrentItem();">
-     <img src="icons/x.svg" id="clearicon" alt="Clear history" title="Clear history" onclick="clearHistory()">
-     <img src="icons/arrow-right.svg" id="righticon" alt="Show next item in history" title="Show next item in history" onclick="incPosition();showCurrentItem();">
-     <img src="icons/file-plus.svg" id="formicon" alt="Propose a new item" title="Propose a new item" onclick="showSubForm()">
+     <img data-feather="arrow-left" id="lefticon" alt="Show previous item in history" title="Show previous item in history" onclick="decPosition();showCurrentItem();">
+     <img data-feather="x" id="clearicon" alt="Clear history" title="Clear history" onclick="clearHistory()">
+     <img data-feather="arrow-right" id="righticon" alt="Show next item in history" title="Show next item in history" onclick="incPosition();showCurrentItem();">
+     <img data-feather="file-plus" id="formiconShow" alt="Propose a new item" title="Propose a new item" onclick="showSubForm()">
+     <img data-feather="file-minus" class="hideicon" id="formiconHide" alt="Propose a new item" title="Propose a new item" onclick="hideSubForm()">
     </div>
     <div id="submissionform" class="hideform">
      <p style="margin-bottom: 20px;">
@@ -412,20 +433,20 @@
       as a new issue on this project's <a href="https://github.com/dalling1/LocallyCompactToolsCollection/labels/newitem">GitHub issues page</a> or use
       it as a basis for a <a href="https://github.com/dalling1/LocallyCompactToolsCollection/pulls">pull request</a>.
      </p>
-     <p><img class="tagicon" src="icons/edit.svg" alt="name" title="name"><input id="formname" type="text" placeholder="Item name"/></p>
-     <p><img class="tagicon" src="icons/user.svg" alt="creator" title="creator"><input id="formcreator" type="text" placeholder="Creators (separate with commas)"/></p>
-     <p><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"><input id="formlink" type="text" placeholder="Webpage links (separate with commas)"/></p>
-     <p><img class="tagicon" src="icons/image.svg" alt="image" title="image"><input id="formimage" type="text" placeholder="Image URLs (separate with commas)"/></p>
-     <p><img class="tagicon" src="icons/video.svg" alt="video" title="video"><input id="formvideo" type="text" placeholder="Video URLs (separate with commas)"/></p>
-     <p><img class="tagicon" src="icons/file-text.svg" alt="paper" title="paper"><input id="formreference" type="text" placeholder="Paper URLs (separate with commas)"/></p>
-     <p><img class="tagicon" src="icons/code.svg" alt="source" title="source"><input id="formsource" type="text" placeholder="Source code URLs (separate with commas)"/></p>
+     <p><img class="tagicon" data-feather="edit" alt="name" title="name"><input id="formname" type="text" placeholder="Item name"/></p>
+     <p><img class="tagicon" data-feather="user" alt="creator" title="creator"><input id="formcreator" type="text" placeholder="Creators (separate with commas)"/></p>
+     <p><img class="tagicon" data-feather="layout" alt="webpage" title="webpage"><input id="formlink" type="text" placeholder="Webpage links (separate with commas)"/></p>
+     <p><img class="tagicon" data-feather="image" alt="image" title="image"><input id="formimage" type="text" placeholder="Image URLs (separate with commas)"/></p>
+     <p><img class="tagicon" data-feather="video" alt="video" title="video"><input id="formvideo" type="text" placeholder="Video URLs (separate with commas)"/></p>
+     <p><img class="tagicon" data-feather="file-text" alt="paper" title="paper"><input id="formreference" type="text" placeholder="Paper URLs (separate with commas)"/></p>
+     <p><img class="tagicon" data-feather="code" alt="source" title="source"><input id="formsource" type="text" placeholder="Source code URLs (separate with commas)"/></p>
      <p style="margin-top:12px;">Tags:
-      <input type="checkbox" id="formtagimage"/><label for="formtagimage"><img class="tagicon" src="icons/image.svg" alt="image" title="image"></label>
-      <input type="checkbox" id="formtagpaper"/><label for="formtagpaper"><img class="tagicon" src="icons/file-text.svg" alt="paper" title="paper"></label>
-      <input type="checkbox" id="formtagsource"/><label for="formtagsource"><img class="tagicon" src="icons/code.svg" alt="source" title="source"></label>
-      <input type="checkbox" id="formtagtool"/><label for="formtagtool"><img class="tagicon" src="icons/tool.svg" alt="tool" title="tool"></label>
-      <input type="checkbox" id="formtagvideo"/><label for="formtagvideo"><img class="tagicon" src="icons/video.svg" alt="video" title="video"></label>
-      <input type="checkbox" id="formtagwebpage"/><label for="formtagwebpage"><img class="tagicon" src="icons/layout.svg" alt="webpage" title="webpage"></label>
+      <input type="checkbox" id="formtagimage"/><label for="formtagimage"><img class="tagicon" data-feather="image" alt="image" title="image"></label>
+      <input type="checkbox" id="formtagpaper"/><label for="formtagpaper"><img class="tagicon" data-feather="file-text" alt="paper" title="paper"></label>
+      <input type="checkbox" id="formtagsource"/><label for="formtagsource"><img class="tagicon" data-feather="code" alt="source" title="source"></label>
+      <input type="checkbox" id="formtagtool"/><label for="formtagtool"><img class="tagicon" data-feather="tool" alt="tool" title="tool"></label>
+      <input type="checkbox" id="formtagvideo"/><label for="formtagvideo"><img class="tagicon" data-feather="video" alt="video" title="video"></label>
+      <input type="checkbox" id="formtagwebpage"/><label for="formtagwebpage"><img class="tagicon" data-feather="layout" alt="webpage" title="webpage"></label>
      </p>
      <p><textarea rows="8" id="formdescription" placeholder="Enter a description of this item"></textarea></p>
      <div id="formbuttons">
@@ -457,13 +478,13 @@
    function showSubForm(){
     document.getElementById('detailscontent').classList.add('showform');
     document.getElementById('submissionform').classList.remove('hideform');
-    document.getElementById('formicon').src='icons/file-minus.svg';
-    document.getElementById('formicon').onclick=function(){hideSubForm()};
+    document.getElementById('formiconShow').classList.add('hideicon');
+    document.getElementById('formiconHide').classList.remove('hideicon');
    }
    function hideSubForm(){
     document.getElementById('submissionform').classList.add('hideform');
-    document.getElementById('formicon').src='icons/file-plus.svg';
-    document.getElementById('formicon').onclick=function(){showSubForm()};
+    document.getElementById('formiconShow').classList.remove('hideicon');
+    document.getElementById('formiconHide').classList.add('hideicon');
     document.getElementById('detailscontent').classList.remove('showform');
    }
    function clearForm(){

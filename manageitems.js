@@ -63,8 +63,9 @@ function showItemDetails(hash){
   // highlight the item whose details are being shown
   document.getElementById(hashtable[hash]).classList.add("showing");
 
-  // insert the icon SVG code in the details box
+  // insert the icon SVG code in the details box (and then set their titles for use as tooltips)
   feather.replace();
+  setIconTitles();
 
   // store the items which the user views, so that we can recall them if requested
   // (or, for example, the user leaves the page and then returns later)

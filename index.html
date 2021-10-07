@@ -381,7 +381,7 @@
    }
   </style>
  </head>
- <body onload="setupItems();feather.replace();">
+ <body onload="setupItems();feather.replace();setIconTitles();">
   <div class="heading">
    <h1>Computational and Visualisation Tools for Locally Compact Groups Acting on Discrete Structures</h1>
    <p>A collection of on-line resources.  Click an item to see its details, or drag it into the right-hand area. Search terms can be separated by commas to perform an "or" search.
@@ -505,6 +505,20 @@
     document.getElementById("copyoutput").setAttribute("disabled","disabled");
     document.getElementById("formoutput").setAttribute("data-copy-text","");
     document.getElementById("formoutput").innerHTML = "";
+   }
+   function setIconTitles(){
+    // "title" attributes on SVG elements do not get tooltip behaviour, so insert a <title>...</title> object into the SVG object
+    // call this function after feather.replace()
+    var icons = document.getElementsByClassName('feather');
+    for (var i=0;i<icons.length;i++){
+     if ((title=icons[i].getAttribute('title')) != null){ // make sure there is a title to copy
+      if (icons[i].getElementsByTagName('title').length == 0){ // but do nothing if there is already a title object in this SVG
+       var T = document.createElementNS('http://www.w3.org/2000/svg','title');
+       T.append(title);
+       icons[i].insertBefore(T,icons[i].firstChild);
+      }
+     }
+    }
    }
   </script>
 

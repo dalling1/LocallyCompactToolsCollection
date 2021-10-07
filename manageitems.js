@@ -63,6 +63,10 @@ function showItemDetails(hash){
   // highlight the item whose details are being shown
   document.getElementById(hashtable[hash]).classList.add("showing");
 
+  // insert the icon SVG code in the details box (and then set their titles for use as tooltips)
+  feather.replace();
+  setIconTitles();
+
   // store the items which the user views, so that we can recall them if requested
   // (or, for example, the user leaves the page and then returns later)
   addToHistory(hash);
@@ -152,25 +156,24 @@ function clearDetails(){
 function showIcons(tagstring){
  // take a comma-separated string as input and return a string
  //  containing an icon img for each tag in the string
- var iconpath = 'icons/'; // should end in '/'
  var icons = [];
  var tags = tagstring.trim().split(new RegExp(/ *, */));
  for (var i=0;i<tags.length;i++){
   switch (tags[i]){
-   case 'creator': icons.push('user.svg'); break;
-   case 'creators': icons.push('users.svg'); break;
-   case 'image': icons.push('image.svg'); break;
-   case 'paper': icons.push('file-text.svg'); break;
-   case 'source': icons.push('code.svg'); break;
-   case 'tool': icons.push('tool.svg'); break;
-   case 'video': icons.push('video.svg'); break;
-   case 'webpage': icons.push('layout.svg'); break;
+   case 'creator': icons.push('user'); break;
+   case 'creators': icons.push('users'); break;
+   case 'image': icons.push('image'); break;
+   case 'paper': icons.push('file-text'); break;
+   case 'source': icons.push('code'); break;
+   case 'tool': icons.push('tool'); break;
+   case 'video': icons.push('video'); break;
+   case 'webpage': icons.push('layout'); break;
   }
  }
  // have the icon file names, so set up the HTML IMG code
  var img = '';
  for (var i=0;i<icons.length;i++){
-  img += `<img class="tagicon tag:${tags[i]}" src="${iconpath}${icons[i]}" alt="${tags[i]}" title="${tags[i]}" />`;
+  img += `<img class="tagicon tag:${tags[i]}" data-feather="${icons[i]}" alt="${tags[i]}" title="${tags[i]}" />`;
  }
 
  return img;

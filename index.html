@@ -412,11 +412,11 @@
   </div>
 
   <div id="controls">
-   Item size:
+   Item size <span lang="jp" class="hidden">大きさ</span>:
    <img data-feather="trello" onclick="catSize('small');"  style="width:18px; height:18px; margin-bottom:1px;">
    <img data-feather="trello" onclick="catSize('medium');" style="width:26px; height:26px; margin-bottom:0;">
    <img data-feather="trello" onclick="catSize('large');"  style="width:34px; height:34px; margin-bottom:-1px;">
-   Filter by tag:
+   Filter by tag <span lang="jp" class="hidden">フィルター</span>:
    <img onclick="toggleTag('image')" data-feather="image" alt="image" title="image">
    <img onclick="toggleTag('paper')" data-feather="file-text" alt="paper" title="paper">
    <img onclick="toggleTag('source')" data-feather="code" alt="source" title="source">
@@ -425,13 +425,16 @@
    <img onclick="toggleTag('webpage')" data-feather="layout" alt="webpage" title="webpage">
    <img onclick="toggleTag('star')" data-feather="star" alt="favourites" title="favourites" class="favourite">
    <span class="control" onclick="toggleTag()">SHOW ALL</span>
+   <span lang="jp" class="control hidden" onclick="toggleTag()">すべてを表示する</span>
    <img data-feather="search" alt="search" title="search" id="searchicon" onclick="document.getElementById('search').focus()">
    <div class="searchwithclear">
     <input type="search" id="search" placeholder="search" oninput="runSearch()" />
     <span id="clearsearch" onclick="document.getElementById('search').value=''; document.getElementById('search').focus(); runSearch();"><img data-feather="x-circle" alt="clear" title="clear"></span>
    </div>
    <input type="checkbox" id="searchcase" checked="checked" onchange="runSearch()" /> <span title="Do a case-insensitive search">ignore case</span>
+   <span lang="jp" class="hidden">大文字を無視します</span>
    <input type="checkbox" id="searchdetail" checked="checked" onchange="runSearch()" /> <span title="Search item details, not just the title">search details</span>
+   <span lang="jp" class="hidden">詳細で検索</span>
   </div>
 
   <div id="lang">

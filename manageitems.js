@@ -21,7 +21,8 @@ function setupItems(){
   newitem.ondragstart = function(){dragStart(event)};
   newitem.innerHTML = `\n <p class="itemnumber">Item ${i+1}</p>
  <p class="itemnumber hidden" lang="jp" >アイテム ${i+1}</p>
- <p class="itemname">${items[i].name}</p>\n`;
+ <p class="itemname">${items[i].name}</p>
+ <p class="itemstar"><img data-feather="star" id="star${i+1}" alt="Star" title="Star"`+(isFavourite(items[i].hash)?` class="favourite"`:``)+` onclick = "toggleItemFavourite(event);"></p>\n`;
   // add icons if there are tags on this item
   if (items[i].hasOwnProperty('tags')){
    newitem.innerHTML += ` <div class="iconholder">`+showIcons(items[i].tags)+`</div>\n`;
@@ -119,7 +120,8 @@ function toggleLang(lang){
 
 ///////////////////////////////////////////////////////////////////////////////
 function toggleTag(tag=''){
- var allowedTags = ['image','paper','source','tool','video','webpage'];
+ // filter the displayed items by tag (star is a special option, for showing favourites)
+ var allowedTags = ['star','image','paper','source','tool','video','webpage'];
  // only operate if a legal tag was given:
  if (allowedTags.indexOf(tag)>-1 || tag==''){
   for (var i=0;i<allowedTags.length;i++){
@@ -135,9 +137,16 @@ function toggleTag(tag=''){
   }
 
   // and then show the requested tag:
-  var T = document.getElementsByClassName('tag:'+tag);
-  for (var t=0;t<T.length;t++){
-   T[t].parentElement.parentElement.classList.remove('shrink');
+  if (tag=='star'){
+   var T = getFavouriteItems();
+   for (var t=0;t<T.length;t++){
+    T[t].classList.remove('shrink');
+   }
+  } else {
+   var T = document.getElementsByClassName('tag:'+tag);
+   for (var t=0;t<T.length;t++){
+    T[t].parentElement.parentElement.classList.remove('shrink');
+   }
   }
  }
 
@@ -291,18 +300,23 @@ function getCookie(cname) {
   }
   return "";
 }
+///////////////////////////////////////////////////////////////////////////////
+function getArrayCookie(cname){
+ // gets a cookie and then attempts to split it into an array by commas
+ var c = getCookie(cname);
+ // avoid splitting the empty string, since that produces another empty string:
+ if (c.length){
+  var carray = c.split(',');
+ } else {
+  // when we actually want an empty array:
+  carray = [];
+ }
+ return carray;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 function getHistory(){
- var crumb = getCookie('viewedItems');
- // avoid splitting the empty string, since that produces another empty string:
- if (crumb.length){
-  var history = crumb.split(',');
- } else {
- // we actually want an empty array:
-  history = [];
- }
- return history;
+ return getArrayCookie('viewedItems');
 }
 ///////////////////////////////////////////////////////////////////////////////
 function addToHistory(hash){
@@ -471,4 +485,64 @@ String.prototype.hashCode = function() {
 function clearHighlights(){
  var olditems = document.getElementsByClassName("showing");
  for (var i=olditems.length;i>0;i--) olditems[i-1].classList.remove("showing");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+function toggleItemFavourite(event){
+ // adds an item (based on the HTML element clicked on) to the favourites list,
+ // or removes it if it is already there; Nb. the clicked-on item is the SVG star
+ var thestar = event.target.parentElement;
+ var hash = thestar.parentElement.parentElement.getAttribute('data-hash');
+ toggleFavourite(hash);
+ // finished changing the cookie, now adjust the style of the star on the page
+ if (isFavourite(hash)) thestar.classList.add('favourite');
+ else thestar.classList.remove('favourite');
+ event.stopPropagation();
+}
+///////////////////////////////////////////////////////////////////////////////
+function toggleFavourite(hash){
+ if (hash.length){
+  favourites = getFavourites();
+  if (isFavourite(hash)){
+   favourites.splice(favourites.indexOf(hash),1);
+  } else {
+   favourites.push(hash);
+  }
+  setFavourites(favourites);
+ }
+}
+///////////////////////////////////////////////////////////////////////////////
+function isFavourite(hash){
+ // takes an item hash and checks if it is in the favourites list
+ hash = parseInt(hash);
+ return (getFavourites().indexOf(hash.toString())>-1);
+}
+///////////////////////////////////////////////////////////////////////////////
+function getFavourites(){
+ // returns an array containing the hashes of the favourites
+ return getArrayCookie('favourites');
+}
+///////////////////////////////////////////////////////////////////////////////
+function setFavourites(hashes=[]){
+ // set the favourites cookie with the given hashes
+ // make sure we have an array (in case a single hash is passed)
+ if (typeof(hashes)=='string' || typeof(hashes)=='number') hashes = [hashes];
+ favouritesstring = hashes.join(',');
+ // put the list into a cookie
+ document.cookie = `favourites=${favouritesstring}; sameSite=Strict; path=/;`;
+}
+///////////////////////////////////////////////////////////////////////////////
+function clearFavourites(){
+ // remove all favourites
+ setFavourites();
+}
+///////////////////////////////////////////////////////////////////////////////
+function getFavouriteItems(){
+ // takes the hashes of the favourites and returns the item elements on the page
+ var hashes = getFavourites();
+ var favouriteitems = [];
+ for (var i=0;i<hashes.length;i++){
+  favouriteitems.push(document.getElementById(hashtable[hashes[i]]));
+ }
+ return favouriteitems;
 }

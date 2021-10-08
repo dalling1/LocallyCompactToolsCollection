@@ -113,6 +113,29 @@
     height: 16px;
     transition: all 1s ease, color 0.2s ease;;
    }
+   #catalogue .itemstar {
+    text-align: right;
+    position: absolute;
+    right: 1px;
+    top: -3px;
+    transition: all 1s ease;
+    padding: 0;
+    margin: 0;
+   }
+   #catalogue .itemstar svg {
+    width: 16px;
+    transition: all 0.2s ease;
+    opacity: 0.25;
+   }
+   #catalogue .itemstar svg:hover {
+    opacity: 1.0;
+    fill: #ffd700;
+   }
+   #catalogue svg.favourite,
+   svg.favourite {
+    opacity: 1.0;
+    fill: #ffd700;
+   }
    #details {
     position: sticky;
     width: 39%;
@@ -400,6 +423,7 @@
    <img onclick="toggleTag('tool')" data-feather="tool" alt="tool" title="tool">
    <img onclick="toggleTag('video')" data-feather="video" alt="video" title="video">
    <img onclick="toggleTag('webpage')" data-feather="layout" alt="webpage" title="webpage">
+   <img onclick="toggleTag('star')" data-feather="star" alt="favourites" title="favourites" class="favourite">
    <span class="control" onclick="toggleTag()">SHOW ALL</span>
    <img data-feather="search" alt="search" title="search" id="searchicon" onclick="document.getElementById('search').focus()">
    <div class="searchwithclear">

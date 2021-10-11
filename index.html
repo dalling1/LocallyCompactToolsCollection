@@ -166,7 +166,7 @@
    #details .detailcontrols {
     text-align: right;
     position: absolute;
-    right: 1px;
+    right: 0;
     top: -22px;
     cursor: pointer;
     background-color: #fafafa;
@@ -201,6 +201,16 @@
     position: absolute;
     right: 5px;
     top: 5px;
+    cursor:pointer;
+   }
+   #lang > div {
+    float: right;
+   }
+   .mobilecontrol {
+    margin-left: 3px;
+   }
+   .mobilecontrol svg {
+    vertical-align: top;
    }
    .flag {
     width: 20px;
@@ -372,6 +382,25 @@
     overflow: hidden;
     transition: all 1s ease;
    }
+   #wrapper.mobile {
+    display: block;
+   }
+   #wrapper.mobile #catalogue {
+    position: relative;
+    width: 100%;
+   }
+   #wrapper.mobile #details {
+    position: fixed;
+    width: 50vw;
+    height: 85vh;
+    left: 25vw;
+    top: 10vh;
+    background-color: #cacaca;
+   }
+   #wrapper.mobile .detailcontrols {
+    padding-top: 3px;
+    background-color: #cacaca;
+   }
 
    /* hide some things during printing */
    @media print {
@@ -438,6 +467,7 @@
   </div>
 
   <div id="lang">
+   <div class="mobilecontrol" onclick="toggleMobile()"><img style="width:16px; height:16px;" data-feather="monitor"><img style="width:16px; height:16px;" data-feather="smartphone"></div>
    <div class="flag" onclick="toggleLang('jp')"><div style="height:10px; width:10px; border-radius:10px; background-color:#f00; margin:2px auto;"></div></div>
   </div>
 
@@ -448,9 +478,9 @@
 
    <div id="details" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class="detailcontrols">
-     <img data-feather="arrow-left" id="lefticon" alt="Show previous item in history" title="Show previous item in history" onclick="decPosition();showCurrentItem();">
+     <img data-feather="arrow-left" id="lefticon" alt="Show previous item in history" title="Show previous item in history" onclick="showPrevDetails();">
      <img data-feather="x" id="clearicon" alt="Clear history" title="Clear history" onclick="clearHistory()">
-     <img data-feather="arrow-right" id="righticon" alt="Show next item in history" title="Show next item in history" onclick="incPosition();showCurrentItem();">
+     <img data-feather="arrow-right" id="righticon" alt="Show next item in history" title="Show next item in history" onclick="showNextDetails();">
      <img data-feather="file-plus" id="formiconShow" alt="Propose a new item" title="Propose a new item" onclick="showSubForm()">
      <img data-feather="file-minus" class="hideicon" id="formiconHide" alt="Propose a new item" title="Propose a new item" onclick="hideSubForm()">
     </div>
@@ -507,12 +537,14 @@
     document.getElementById('submissionform').classList.remove('hideform');
     document.getElementById('formiconShow').classList.add('hideicon');
     document.getElementById('formiconHide').classList.remove('hideicon');
+    event.stopPropagation();
    }
    function hideSubForm(){
     document.getElementById('submissionform').classList.add('hideform');
     document.getElementById('formiconShow').classList.remove('hideicon');
     document.getElementById('formiconHide').classList.add('hideicon');
     document.getElementById('detailscontent').classList.remove('showform');
+    event.stopPropagation();
    }
    function clearForm(){
     document.getElementById("formname").value = "";
@@ -546,6 +578,28 @@
       }
      }
     }
+   }
+   function toggleMobile(){
+    if (document.getElementById('wrapper').classList.contains('mobile')){
+     // turn "mobile" layout off:
+     document.getElementById('wrapper').classList.remove('mobile');
+     document.getElementById('details').classList.remove('hidden');
+    } else {
+     // turn "mobile" layout on:
+     document.getElementById('wrapper').classList.add('mobile');
+     document.getElementById('details').classList.add('hidden');
+     document.getElementById('details').onclick = function(){this.classList.add('hidden')};
+    }
+   }
+   function showPrevDetails(){
+    decPosition();
+    showCurrentItem();
+    event.stopPropagation();
+   }
+   function showNextDetails(){
+    incPosition();
+    showCurrentItem();
+    event.stopPropagation();
    }
   </script>
 

@@ -202,7 +202,7 @@ function makeLinks(type,datastring){
    if (type=='creator'){
     output += ` <p style="margin:6px 0;">`+showIcons(type)+data[i]+`</p>\n`;
    } else {
-    output += ` <p><a class="detaillink" href="${data[i]}">`+showIcons(type)+data[i]+`</a></p>\n`;
+    output += ` <p style="margin:20px 0;"><a class="detaillink" href="${data[i]}">`+showIcons(type)+data[i]+`</a></p>\n`;
    }
   }
  }

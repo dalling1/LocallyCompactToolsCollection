@@ -100,7 +100,7 @@ items.push({
 items.push({
  'name': 'GAP package for universal groups',
  'creator': 'Khalil Hannouch, Stephan Tornier',
- 'link': 'https://gap-packages.github.io/',
+ 'link': 'https://gap-packages.github.io/UGALY/',
  'description': 'UGALY is a GAP package that provides methods to create, analyse and find local actions of generalised universal groups acting on locally finite regular trees, following Burger-Mozes and Tornier.',
  'image': '',
  'video': 'https://www.youtube.com/watch?v=MsoE450ZZtg',

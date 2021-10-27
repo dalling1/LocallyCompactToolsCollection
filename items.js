@@ -99,7 +99,7 @@ items.push({
 ///
 items.push({
  'name': 'GAP package for universal groups',
- 'creator': 'Khalil Hannouch, Stephan Tornier',
+ 'creator': '<a href="https://www.newcastle.edu.au/profile/khalil-hannouch">Khalil Hannoch</a>, <a href="https://www.newcastle.edu.au/profile/stephan-tornier">Stephan Tornier</a>',
  'link': 'https://gap-packages.github.io/UGALY/',
  'description': 'UGALY is a GAP package that provides methods to create, analyse and find local actions of generalised universal groups acting on locally finite regular trees, following Burger-Mozes and Tornier.',
  'image': '',
@@ -111,7 +111,7 @@ items.push({
 ///
 items.push({
  'name': 'GAP package for self-replicating groups',
- 'creator': 'Samuel King, Sarah Shotter, Stephan Tornier',
+ 'creator': 'Samuel King, Sarah Shotter, <a href="https://www.newcastle.edu.au/profile/stephan-tornier">Stephan Tornier</a>',
  'link': 'https://github.com/SamSGKing/SRGroups',
  'description': 'SRGroups is a GAP package for self-replicating groups in the sense of Horadam.',
  'image': '',

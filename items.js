@@ -113,7 +113,7 @@ items.push({
  'name': 'GAP package for self-replicating groups',
  'creator': 'Samuel King, Sarah Shotter, <a href="https://www.newcastle.edu.au/profile/stephan-tornier">Stephan Tornier</a>',
  'link': 'https://github.com/SamSGKing/SRGroups',
- 'description': 'SRGroups is a GAP package for self-replicating groups in the sense of Horadam.',
+ 'description': 'SRGroups is a GAP package (under development) for self-replicating groups acting on regular rooted trees.',
  'image': '',
  'video': 'https://www.youtube.com/watch?v=eN3IiQui2ew',
  'reference': 'https://nova.newcastle.edu.au/vital/access/manager/Repository/uon:17152',

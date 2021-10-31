@@ -61,6 +61,7 @@ items.push({
  'tags': 'webpage,tool,source',
 });
 ///
+/*
 items.push({
  'name': 'Zero-Dimensional Symmetry Research Group',
  'creator': '',
@@ -72,7 +73,9 @@ items.push({
  'source': '',
  'tags': 'webpage',
 });
+*/
 ///
+/*
 items.push({
  'name': 'Boundary $2$-transitive groups acting on trees',
  'creator': 'Nicolas Radu',
@@ -84,7 +87,9 @@ items.push({
  'source': '',
  'tags': 'paper',
 });
+*/
 ///
+/*
 items.push({
  'name': 'CARMA Spikeys',
  'creator': 'Andrew Mattingly (3D construction), David Allingham (rendering)',
@@ -96,6 +101,7 @@ items.push({
  'source': '',
  'tags': 'image',
 });
+*/
 ///
 items.push({
  'name': 'GAP package for universal groups',
@@ -121,6 +127,7 @@ items.push({
  'tags': 'tool,paper,source,video',
 });
 ///
+/*
 items.push({
  'name': 'TikZ/PSTricks templates',
  'creator': '',
@@ -132,3 +139,4 @@ items.push({
  'source': '',
  'tags': 'tool',
 });
+*/

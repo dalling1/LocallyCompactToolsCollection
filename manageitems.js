@@ -56,6 +56,8 @@ function setupItems(){
 function showItemDetails(hash){
  // clear any extant hightlighting of the catalogue items
  clearHighlights();
+ // hide the input form
+ hideSubForm();
  // show the details div (in case it is hidden, eg. in the "mobile" layout)
  document.getElementById('details').classList.remove('hidden');
  // look for this item in the hashtable

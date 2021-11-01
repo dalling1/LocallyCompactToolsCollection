@@ -61,48 +61,6 @@ items.push({
  'tags': 'webpage,tool,source',
 });
 ///
-/*
-items.push({
- 'name': 'Zero-Dimensional Symmetry Research Group',
- 'creator': '',
- 'link': 'https://zerodimensional.group/',
- 'description': 'Home page of the Zero-Dimensional Symmetry research group, based at the University of Newcastle but with members across the globe.',
- 'image': '',
- 'video': '',
- 'reference': '',
- 'source': '',
- 'tags': 'webpage',
-});
-*/
-///
-/*
-items.push({
- 'name': 'Boundary $2$-transitive groups acting on trees',
- 'creator': 'Nicolas Radu',
- 'link': '',
- 'description': 'Paper by Nicholas Radu entitled "A classification theorem for boundary 2-transitive automorphism groups of trees".',
- 'image': '',
- 'video': '',
- 'reference': 'https://dial.uclouvain.be/pr/boreal/object/boreal:182440',
- 'source': '',
- 'tags': 'paper',
-});
-*/
-///
-/*
-items.push({
- 'name': 'CARMA Spikeys',
- 'creator': 'Andrew Mattingly (3D construction), David Allingham (rendering)',
- 'link': '',
- 'description': '3D rendering of a small part of a Bruhat-Tits building.',
- 'image': 'https://carma.edu.au/art/img/carmaspikeys-2-03.jpg',
- 'video': '',
- 'reference': '',
- 'source': '',
- 'tags': 'image',
-});
-*/
-///
 items.push({
  'name': 'GAP package for universal groups',
  'creator': '<a href="https://www.newcastle.edu.au/profile/khalil-hannouch">Khalil Hannoch</a>, <a href="https://www.newcastle.edu.au/profile/stephan-tornier">Stephan Tornier</a>',
@@ -127,16 +85,3 @@ items.push({
  'tags': 'tool,paper,source,video',
 });
 ///
-/*
-items.push({
- 'name': 'TikZ/PSTricks templates',
- 'creator': '',
- 'link': '',
- 'description': 'A collection of TikZ and PSTricks code snippets to include common images in LaTeX.',
- 'image': '',
- 'video': '',
- 'reference': '',
- 'source': '',
- 'tags': 'tool',
-});
-*/

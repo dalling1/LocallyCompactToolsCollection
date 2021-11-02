@@ -85,3 +85,15 @@ items.push({
  'tags': 'tool,paper,source,video',
 });
 ///
+items.push({
+ 'name': 'GAP package for functionally recursive groups',
+ 'creator': '<a href="http://www.uni-math.gwdg.de/laurent/">Laurent Bartholdi</a>',
+ 'link': 'https://www.gap-system.org/Packages/fr.html',
+ 'description': 'FR is a GAP package which implements in GAP the basic objects of Mealy machines and functional recursions; and handles groups that they generate, such as self-similar groups.',
+ 'image': '',
+ 'video': '',
+ 'reference': 'https://mathscinet.ams.org/mathscinet-getitem?mr=MR2091700, https://mathscinet.ams.org/mathscinet-getitem?mr=MR2035113',
+ 'source': 'https://github.com/gap-packages/fr',
+ 'tags': 'tool,paper,source',
+});
+///

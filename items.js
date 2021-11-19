@@ -3,7 +3,7 @@
 var items = [];
 items.push({
  'name': 'The Buildings Gallery',
- 'creator': 'Bram Bekker',
+ 'creator': 'Bram Bekker, Maarten Solleveld',
  'link': 'https://buildings.gallery',
  'description': 'Visualisation tool for some spherical and affine buildings.',
  'image': '',

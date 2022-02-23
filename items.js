@@ -109,7 +109,7 @@ items.push({
  'tags': 'tool,paper,source',
 });
 ///
-{
+items.push({
  'name': 'Automorphism constructor and explorer',
  'creator': 'David Allingham',
  'link': 'https://dalling1.github.io/automorphisms/',
@@ -119,5 +119,5 @@ items.push({
  'reference': '',
  'source': 'https://github.com/dalling1/automorphisms',
  'tags': 'source,tool,webpage',
-}
+});
 ///

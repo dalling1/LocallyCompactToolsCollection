@@ -109,3 +109,15 @@ items.push({
  'tags': 'tool,paper,source',
 });
 ///
+{
+ 'name': 'Automorphism constructor and explorer',
+ 'creator': 'David Allingham',
+ 'link': 'https://dalling1.github.io/automorphisms/',
+ 'description': 'A tool for constructing automorphisms on trees. Construction can be performed using a graphical interface or by entering the automorphism into a text editor. Labelling and export options are provided.',
+ 'image': '',
+ 'video': '',
+ 'reference': '',
+ 'source': 'https://github.com/dalling1/automorphisms',
+ 'tags': 'source,tool,webpage',
+}
+///

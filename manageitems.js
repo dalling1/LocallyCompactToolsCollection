@@ -436,7 +436,7 @@ function generateItem(){
 
  var tags = tagchoices.join(',');
 
- var newitem = `{
+ var newitem = `items.push({
  'name': '${formname}',
  'creator': '${formcreator}',
  'link': '${formlink}',
@@ -446,7 +446,8 @@ function generateItem(){
  'reference': '${formreference}',
  'source': '${formsource}',
  'tags': '${tags}',
-}`;
+});
+///`;
  // escape back-slashes (they are preserved on the form output, but need escaping for entering into items.js)
  newitem = newitem.replace('\\','\\\\');
 
@@ -466,7 +467,7 @@ async function copyOutput(){
  try {
   var copy_value = document.getElementById("formoutput").getAttribute("data-copy-text");
   await navigator.clipboard.writeText(copy_value);
-  alert('Text copied successfully');
+  alert('Text copied to clipboard');
  } catch (error){
   console.error("copy failed", error);
  }
